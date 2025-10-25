@@ -62,27 +62,27 @@ export default async function ApplicationsPage() {
     const statusConfig = {
       applied: { 
         label: "Menunggu Review", 
-        color: "bg-blue-100 text-blue-800 border-blue-200",
+        color: "bg-slate-100 text-slate-700 border-slate-200",
         icon: Clock 
       },
       shortlisted: { 
         label: "Shortlisted", 
-        color: "bg-purple-100 text-purple-800 border-purple-200",
+        color: "bg-[#2B3E7C]/10 text-[#2B3E7C] border-[#2B3E7C]/20",
         icon: AlertCircle 
       },
       interview: { 
         label: "Interview", 
-        color: "bg-indigo-100 text-indigo-800 border-indigo-200",
+        color: "bg-[#ff6154]/10 text-[#ff6154] border-[#ff6154]/20",
         icon: Calendar 
       },
       rejected: { 
         label: "Tidak Lolos", 
-        color: "bg-red-100 text-red-800 border-red-200",
+        color: "bg-red-50 text-red-700 border-red-200",
         icon: XCircle 
       },
       hired: { 
         label: "Diterima", 
-        color: "bg-green-100 text-green-800 border-green-200",
+        color: "bg-green-50 text-green-700 border-green-200",
         icon: CheckCircle 
       },
     };
@@ -119,67 +119,75 @@ export default async function ApplicationsPage() {
 
   return (
     <div className="max-w-6xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Lamaran Saya</h1>
-        <p className="text-gray-600 mt-2">
-          Pantau status lamaran pekerjaan Anda
-        </p>
+      {/* Header */}
+      <div className="mb-8 bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
+        <div className="flex items-center gap-4">
+          <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
+            <Briefcase className="h-8 w-8 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900">Lamaran Saya</h1>
+            <p className="text-slate-600 mt-1">
+              Pantau status lamaran pekerjaan Anda
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-blue-900">Total Lamaran</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">Total Lamaran</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {applications?.length || 0}
               </p>
             </div>
-            <div className="p-3 bg-blue-200/50 rounded-lg">
-              <Briefcase className="h-6 w-6 text-blue-700" />
+            <div className="p-3 bg-slate-100 rounded-lg">
+              <Briefcase className="h-6 w-6 text-slate-600" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-4 border border-purple-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-purple-900">Shortlisted</p>
-              <p className="text-2xl font-bold text-purple-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">Shortlisted</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {applications?.filter(a => a.status === 'shortlisted').length || 0}
               </p>
             </div>
-            <div className="p-3 bg-purple-200/50 rounded-lg">
-              <AlertCircle className="h-6 w-6 text-purple-700" />
+            <div className="p-3 bg-[#2B3E7C]/10 rounded-lg">
+              <AlertCircle className="h-6 w-6 text-[#2B3E7C]" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-4 border border-indigo-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-indigo-900">Interview</p>
-              <p className="text-2xl font-bold text-indigo-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">Interview</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {applications?.filter(a => a.status === 'interview').length || 0}
               </p>
             </div>
-            <div className="p-3 bg-indigo-200/50 rounded-lg">
-              <Calendar className="h-6 w-6 text-indigo-700" />
+            <div className="p-3 bg-[#ff6154]/10 rounded-lg">
+              <Calendar className="h-6 w-6 text-[#ff6154]" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 border border-green-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-green-900">Diterima</p>
-              <p className="text-2xl font-bold text-green-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">Diterima</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {applications?.filter(a => a.status === 'hired').length || 0}
               </p>
             </div>
-            <div className="p-3 bg-green-200/50 rounded-lg">
-              <CheckCircle className="h-6 w-6 text-green-700" />
+            <div className="p-3 bg-green-50 rounded-lg">
+              <CheckCircle className="h-6 w-6 text-green-600" />
             </div>
           </div>
         </div>

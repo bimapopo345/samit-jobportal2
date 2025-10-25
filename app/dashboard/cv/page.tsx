@@ -31,15 +31,15 @@ export default async function CVPage() {
 
   return (
     <div className="max-w-5xl">
-      {/* Header with Gradient */}
-      <div className="mb-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
+      {/* Header */}
+      <div className="mb-8 bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
         <div className="flex items-center gap-4">
-          <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+          <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
             <span className="text-2xl">📄</span>
           </div>
           <div>
-            <h1 className="text-3xl font-black text-gray-900">Kelola CV</h1>
-            <p className="text-gray-700 mt-1">
+            <h1 className="text-3xl font-bold text-slate-900">Kelola CV</h1>
+            <p className="text-slate-600 mt-1">
               Upload dan kelola CV Anda untuk melamar pekerjaan
             </p>
           </div>
@@ -47,40 +47,40 @@ export default async function CVPage() {
         
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mt-6">
-          <div className="bg-white/80 backdrop-blur rounded-xl p-4 border border-blue-200">
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-lg bg-slate-100 flex items-center justify-center">
                 <span className="text-lg">📊</span>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">{resumes?.length || 0}</p>
-                <p className="text-sm text-gray-700 font-medium">Total CV</p>
+                <p className="text-2xl font-bold text-slate-900">{resumes?.length || 0}</p>
+                <p className="text-sm text-slate-600 font-medium">Total CV</p>
               </div>
             </div>
           </div>
           
-          <div className="bg-white/80 backdrop-blur rounded-xl p-4 border border-green-200">
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-lg bg-[#ff6154]/10 flex items-center justify-center">
                 <span className="text-lg">✅</span>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-slate-900">
                   {resumes?.filter(r => r.id === profile?.default_cv_id).length || 0}
                 </p>
-                <p className="text-sm text-gray-700 font-medium">CV Default</p>
+                <p className="text-sm text-slate-600 font-medium">CV Default</p>
               </div>
             </div>
           </div>
           
-          <div className="bg-white/80 backdrop-blur rounded-xl p-4 border border-purple-200">
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-lg bg-[#2B3E7C]/10 flex items-center justify-center">
                 <span className="text-lg">📤</span>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">5 MB</p>
-                <p className="text-sm text-gray-700 font-medium">Max Size</p>
+                <p className="text-2xl font-bold text-slate-900">5 MB</p>
+                <p className="text-sm text-slate-600 font-medium">Max Size</p>
               </div>
             </div>
           </div>

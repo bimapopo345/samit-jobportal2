@@ -54,23 +54,23 @@ export default async function JobsListPage() {
 
   return (
     <div className="max-w-7xl">
-      {/* Header with Gradient - COLORFUL */}
-      <div className="mb-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-8 border-2 border-indigo-200 shadow-xl">
+      {/* Header */}
+      <div className="mb-8 bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
               <Briefcase className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-black text-gray-900">Lowongan Saya</h1>
-              <p className="text-gray-700 font-semibold mt-1">
+              <h1 className="text-3xl font-bold text-slate-900">Lowongan Saya</h1>
+              <p className="text-slate-600 mt-1">
                 Kelola lowongan kerja yang telah Anda posting
               </p>
             </div>
           </div>
           <Button 
             asChild
-            className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-emerald-500 hover:to-green-500 text-white font-black shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            className="bg-gradient-to-r from-[#ff7a45] to-[#ff5555] hover:from-[#ff5555] hover:to-[#ff7a45] text-white font-medium shadow-sm hover:shadow-md transition-all"
           >
             <Link href="/dashboard/jobs/new">
               <Plus className="mr-2 h-5 w-5" />
@@ -81,18 +81,18 @@ export default async function JobsListPage() {
       </div>
 
       {jobs && jobs.length > 0 ? (
-        <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl border-2 border-blue-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-2" />
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-gradient-to-r from-[#2B3E7C] to-[#4B5E9C] h-1" />
           <Table>
             <TableHeader>
-              <TableRow className="bg-gradient-to-r from-blue-50 to-indigo-50">
-                <TableHead className="font-black text-gray-900">Judul</TableHead>
-                <TableHead className="font-black text-gray-900">Kategori</TableHead>
-                <TableHead className="font-black text-gray-900">Status</TableHead>
-                <TableHead className="font-black text-gray-900">Pelamar</TableHead>
-                <TableHead className="font-black text-gray-900">Dilihat</TableHead>
-                <TableHead className="font-black text-gray-900">Dibuat</TableHead>
-                <TableHead className="text-right font-black text-gray-900">Aksi</TableHead>
+              <TableRow className="bg-slate-50">
+                <TableHead className="font-semibold text-slate-900">Judul</TableHead>
+                <TableHead className="font-semibold text-slate-900">Kategori</TableHead>
+                <TableHead className="font-semibold text-slate-900">Status</TableHead>
+                <TableHead className="font-semibold text-slate-900">Pelamar</TableHead>
+                <TableHead className="font-semibold text-slate-900">Dilihat</TableHead>
+                <TableHead className="font-semibold text-slate-900">Dibuat</TableHead>
+                <TableHead className="text-right font-semibold text-slate-900">Aksi</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

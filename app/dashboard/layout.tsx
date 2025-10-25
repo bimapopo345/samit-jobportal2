@@ -31,7 +31,7 @@ export default async function DashboardLayout({
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30">
+      <div className="min-h-screen bg-slate-50">
         <div className="flex">
           {/* Sidebar */}
           <DashboardSidebar role={profile.role} />

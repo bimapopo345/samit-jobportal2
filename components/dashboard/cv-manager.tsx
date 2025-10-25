@@ -212,31 +212,31 @@ export function CVManager({ initialResumes, userId, defaultCvId }: CVManagerProp
 
   return (
     <div className="space-y-6">
-      {/* Upload Section - COLORFUL */}
-      <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-xl border-2 border-green-200 overflow-hidden">
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-2" />
+      {/* Upload Section */}
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-gradient-to-r from-[#2B3E7C] to-[#4B5E9C] h-1" />
         <div className="p-6">
-          <h3 className="text-xl font-black text-gray-900 mb-2">📤 Upload CV Baru</h3>
-          <p className="text-gray-700 font-semibold mb-6">
+          <h3 className="text-xl font-semibold text-slate-900 mb-2">Upload CV Baru</h3>
+          <p className="text-slate-600 mb-6">
             Format yang diterima: PDF, DOC, DOCX (Maksimal 5MB)
           </p>
           
           <div className="space-y-4">
             <Label htmlFor="cv-upload" className="cursor-pointer">
-              <div className="border-3 border-dashed border-green-400 bg-gradient-to-br from-white to-green-50 rounded-xl p-10 text-center hover:border-emerald-500 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-100 transition-all duration-300 shadow-lg hover:shadow-xl">
-                <div className="h-16 w-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg">
+              <div className="border-2 border-dashed border-slate-300 bg-slate-50 rounded-xl p-10 text-center hover:border-[#2B3E7C] hover:bg-slate-100 transition-all">
+                <div className="h-16 w-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
                   <FileUp className="h-8 w-8 text-white" />
                 </div>
-                <p className="text-lg font-bold text-gray-900 mb-2">
+                <p className="text-lg font-medium text-slate-900 mb-2">
                   Klik untuk pilih file atau drag & drop
                 </p>
-                <p className="text-sm text-gray-700 font-semibold">
+                <p className="text-sm text-slate-600">
                   PDF, DOC, DOCX hingga 5MB
                 </p>
                 <div className="mt-4 flex justify-center gap-2">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">📄 PDF</span>
-                  <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">📝 DOC</span>
-                  <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-xs font-bold">📋 DOCX</span>
+                  <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">📄 PDF</span>
+                  <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">📝 DOC</span>
+                  <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">📋 DOCX</span>
                 </div>
               </div>
               <Input
@@ -250,42 +250,42 @@ export function CVManager({ initialResumes, userId, defaultCvId }: CVManagerProp
             </Label>
 
             {uploading && (
-              <div className="flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-xl border border-blue-300">
-                <Loader2 className="h-5 w-5 animate-spin text-blue-600" />
-                <span className="font-bold text-gray-900">Mengunggah CV...</span>
+              <div className="flex items-center justify-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <Loader2 className="h-5 w-5 animate-spin text-[#2B3E7C]" />
+                <span className="font-medium text-slate-900">Mengunggah CV...</span>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Message Display - COLORFUL */}
+      {/* Message Display */}
       {message && (
-        <div className={`p-4 rounded-xl flex items-center gap-3 shadow-lg ${
+        <div className={`p-4 rounded-xl flex items-center gap-3 border ${
           message.type === 'success' 
-            ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-900 border-2 border-green-300' 
-            : 'bg-gradient-to-r from-red-100 to-pink-100 text-red-900 border-2 border-red-300'
+            ? 'bg-green-50 text-green-800 border-green-200' 
+            : 'bg-red-50 text-red-800 border-red-200'
         }`}>
           {message.type === 'success' ? (
-            <div className="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center">
-              <Check className="h-5 w-5 text-white" />
+            <div className="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center">
+              <Check className="h-4 w-4 text-white" />
             </div>
           ) : (
-            <div className="h-8 w-8 rounded-full bg-red-500 flex items-center justify-center">
-              <X className="h-5 w-5 text-white" />
+            <div className="h-6 w-6 rounded-full bg-red-500 flex items-center justify-center">
+              <X className="h-4 w-4 text-white" />
             </div>
           )}
-          <span className="text-base font-bold">{message.text}</span>
+          <span className="text-sm font-medium">{message.text}</span>
         </div>
       )}
 
-      {/* CV List - COLORFUL */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-xl border-2 border-blue-200 overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-2" />
+      {/* CV List */}
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-gradient-to-r from-[#2B3E7C] to-[#4B5E9C] h-1" />
         <div className="p-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-black text-gray-900">📁 CV Tersimpan</h3>
-            <span className="px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-900 rounded-full text-sm font-bold">
+            <h3 className="text-xl font-semibold text-slate-900">CV Tersimpan</h3>
+            <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">
               {resumes.length} CV tersimpan
             </span>
           </div>

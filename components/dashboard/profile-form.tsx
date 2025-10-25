@@ -80,30 +80,30 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
       {/* Basic Information */}
       <div className="space-y-4">
         <div className="flex items-center gap-2 mb-4">
-          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
+          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
             <span className="text-lg">👤</span>
           </div>
-          <h3 className="font-bold text-xl text-gray-900">Informasi Dasar</h3>
+          <h3 className="font-semibold text-xl text-slate-900">Informasi Dasar</h3>
         </div>
         
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-            <Label htmlFor="email" className="text-gray-900 font-semibold mb-2 block">
-              📧 Email
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-slate-700 font-medium">
+              Email
             </Label>
             <Input
               id="email"
               type="email"
               value={userEmail || ""}
               disabled
-              className="bg-gray-100 border-gray-300 text-gray-900 font-bold disabled:opacity-100"
+              className="bg-slate-100 border-slate-300 text-slate-600 cursor-not-allowed"
             />
-            <p className="text-sm text-gray-700 mt-2 font-bold">🔒 Email tidak dapat diubah</p>
+            <p className="text-sm text-slate-500">Email tidak dapat diubah</p>
           </div>
           
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-200">
-            <Label htmlFor="full_name" className="text-gray-900 font-semibold mb-2 block">
-              ✨ Nama Lengkap *
+          <div className="space-y-2">
+            <Label htmlFor="full_name" className="text-slate-700 font-medium">
+              Nama Lengkap <span className="text-red-500">*</span>
             </Label>
             <Input
               id="full_name"
@@ -111,15 +111,15 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
               value={formData.full_name}
               onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
               required
-              placeholder="John Doe"
-              className="border-purple-300 focus:border-purple-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+              placeholder="Masukkan nama lengkap"
+              className="border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
             />
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
-          <Label htmlFor="phone" className="text-gray-900 font-semibold mb-2 block">
-            📱 Nomor Telepon
+        <div className="space-y-2">
+          <Label htmlFor="phone" className="text-slate-700 font-medium">
+            Nomor Telepon
           </Label>
           <Input
             id="phone"
@@ -127,13 +127,13 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             placeholder="+62 812-3456-7890"
-            className="border-green-300 focus:border-green-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+            className="border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
           />
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200">
-          <Label htmlFor="bio" className="text-gray-900 font-semibold mb-2 block">
-            📝 Bio / Tentang Saya
+        <div className="space-y-2">
+          <Label htmlFor="bio" className="text-slate-700 font-medium">
+            Bio / Tentang Saya
           </Label>
           <Textarea
             id="bio"
@@ -141,27 +141,27 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
             onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
             placeholder="Ceritakan tentang diri Anda, pengalaman, dan keahlian..."
             rows={4}
-            className="resize-none border-blue-300 focus:border-blue-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+            className="resize-none border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
           />
-          <p className="text-sm text-blue-700 mt-2 font-semibold">
+          <p className="text-sm text-slate-600 mt-2">
             📊 {formData.bio.length}/500 karakter
           </p>
         </div>
       </div>
 
       {/* Social Media Links */}
-      <div className="space-y-4 border-t-2 border-gray-100 pt-6">
+      <div className="space-y-4 border-t border-slate-200 pt-6">
         <div className="flex items-center gap-2 mb-4">
-          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-pink-100 to-purple-100 flex items-center justify-center">
+          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-[#ff6154] to-[#ff7a45] flex items-center justify-center">
             <span className="text-lg">🔗</span>
           </div>
-          <h3 className="font-bold text-xl text-gray-900">Media Sosial</h3>
+          <h3 className="font-semibold text-xl text-slate-900">Media Sosial</h3>
         </div>
         
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
-            <Label htmlFor="linkedin" className="flex items-center gap-2 text-gray-900 font-semibold mb-2">
-              <Linkedin className="h-5 w-5 text-blue-600" />
+          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <Label htmlFor="linkedin" className="flex items-center gap-2 text-slate-900 font-medium mb-2">
+              <Linkedin className="h-5 w-5 text-[#2B3E7C]" />
               LinkedIn
             </Label>
             <Input
@@ -173,13 +173,13 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
                 socials: { ...formData.socials, linkedin: e.target.value }
               })}
               placeholder="https://linkedin.com/in/username"
-              className="border-blue-300 focus:border-blue-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+              className="border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
             />
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-lg border border-indigo-200">
-            <Label htmlFor="facebook" className="flex items-center gap-2 text-gray-900 font-semibold mb-2">
-              <Facebook className="h-5 w-5 text-blue-700" />
+          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <Label htmlFor="facebook" className="flex items-center gap-2 text-slate-900 font-medium mb-2">
+              <Facebook className="h-5 w-5 text-[#2B3E7C]" />
               Facebook
             </Label>
             <Input
@@ -191,13 +191,13 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
                 socials: { ...formData.socials, facebook: e.target.value }
               })}
               placeholder="https://facebook.com/username"
-              className="border-indigo-300 focus:border-indigo-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+              className="border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
             />
           </div>
 
-          <div className="bg-gradient-to-br from-sky-50 to-cyan-100 p-4 rounded-lg border border-cyan-200">
-            <Label htmlFor="twitter" className="flex items-center gap-2 text-gray-900 font-semibold mb-2">
-              <Twitter className="h-5 w-5 text-sky-500" />
+          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <Label htmlFor="twitter" className="flex items-center gap-2 text-slate-900 font-medium mb-2">
+              <Twitter className="h-5 w-5 text-[#2B3E7C]" />
               Twitter
             </Label>
             <Input
@@ -209,13 +209,13 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
                 socials: { ...formData.socials, twitter: e.target.value }
               })}
               placeholder="https://twitter.com/username"
-              className="border-cyan-300 focus:border-cyan-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+              className="border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
             />
           </div>
 
-          <div className="bg-gradient-to-br from-pink-50 to-rose-100 p-4 rounded-lg border border-rose-200">
-            <Label htmlFor="instagram" className="flex items-center gap-2 text-gray-900 font-semibold mb-2">
-              <Instagram className="h-5 w-5 text-pink-600" />
+          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <Label htmlFor="instagram" className="flex items-center gap-2 text-slate-900 font-medium mb-2">
+              <Instagram className="h-5 w-5 text-[#2B3E7C]" />
               Instagram
             </Label>
             <Input
@@ -227,13 +227,13 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
                 socials: { ...formData.socials, instagram: e.target.value }
               })}
               placeholder="https://instagram.com/username"
-              className="border-rose-300 focus:border-rose-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+              className="border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
             />
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-4 rounded-lg border border-violet-200 sm:col-span-2">
-            <Label htmlFor="website" className="flex items-center gap-2 text-gray-900 font-semibold mb-2">
-              <Globe className="h-5 w-5 text-purple-600" />
+          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 sm:col-span-2">
+            <Label htmlFor="website" className="flex items-center gap-2 text-slate-900 font-medium mb-2">
+              <Globe className="h-5 w-5 text-[#2B3E7C]" />
               Website / Portfolio
             </Label>
             <Input
@@ -245,7 +245,7 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
                 socials: { ...formData.socials, website: e.target.value }
               })}
               placeholder="https://yourwebsite.com"
-              className="border-violet-300 focus:border-violet-500 font-semibold text-gray-800 placeholder:text-gray-600 placeholder:font-semibold"
+              className="border-slate-300 focus:border-[#2B3E7C] focus:ring-2 focus:ring-[#2B3E7C]/20 text-slate-800 placeholder:text-slate-500"
             />
           </div>
         </div>
@@ -272,7 +272,7 @@ export function ProfileForm({ profile, userEmail }: ProfileFormProps) {
         <Button 
           type="submit" 
           disabled={loading}
-          className="bg-gradient-to-r from-brand-primary to-purple-600 hover:from-purple-600 hover:to-brand-primary text-white font-bold px-8 py-2.5 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+          className="bg-gradient-to-r from-[#2B3E7C] to-[#4B5E9C] hover:from-[#4B5E9C] hover:to-[#2B3E7C] text-white font-medium px-8 py-2.5 shadow-sm hover:shadow-md transition-all"
         >
           {loading ? (
             <>

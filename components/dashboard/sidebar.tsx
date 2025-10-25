@@ -134,20 +134,20 @@ export function DashboardSidebar({ role }: DashboardSidebarProps) {
   const getRoleBadgeColor = () => {
     switch (role) {
       case "admin":
-        return "bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-md";
+        return "bg-gradient-to-r from-[#ff6154] to-[#ff7a45] text-white shadow-sm";
       case "lembaga":
-        return "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md";
+        return "bg-gradient-to-r from-[#2B3E7C] to-[#4B5E9C] text-white shadow-sm";
       default:
-        return "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md";
+        return "bg-gradient-to-r from-[#2B3E7C] to-[#4B5E9C] text-white shadow-sm";
     }
   };
 
   return (
-    <aside className="w-64 bg-gradient-to-br from-white to-purple-50 border-r border-purple-200 min-h-screen sticky top-16">
+    <aside className="w-64 bg-white border-r border-slate-200 min-h-screen sticky top-16">
       <div className="p-6">
-        <div className="mb-6 bg-gradient-to-r from-purple-100 to-pink-100 p-4 rounded-xl border border-purple-200">
-          <h2 className="text-xl font-black text-gray-900 mb-2">{getRoleLabel()}</h2>
-          <div className={cn("inline-flex items-center px-3 py-1 rounded-full text-sm font-bold", getRoleBadgeColor())}>
+        <div className="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <h2 className="text-xl font-semibold text-slate-900 mb-2">{getRoleLabel()}</h2>
+          <div className={cn("inline-flex items-center px-3 py-1 rounded-full text-sm font-medium", getRoleBadgeColor())}>
             {role === "admin" && <Shield className="h-4 w-4 mr-1" />}
             {role === "lembaga" && <Building2 className="h-4 w-4 mr-1" />}
             {role === "user" && <User className="h-4 w-4 mr-1" />}
@@ -165,10 +165,10 @@ export function DashboardSidebar({ role }: DashboardSidebarProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold transition-all duration-200",
+                  "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
                   isActive
-                    ? "bg-gradient-to-r from-brand-primary to-purple-600 text-white shadow-lg scale-105"
-                    : "text-gray-800 hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 hover:shadow-md hover:scale-102"
+                    ? "bg-[#2B3E7C] text-white shadow-sm"
+                    : "text-slate-700 hover:bg-slate-50 hover:text-[#2B3E7C]"
                 )}
               >
                 <Icon className="h-5 w-5" />

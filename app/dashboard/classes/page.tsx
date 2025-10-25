@@ -55,17 +55,17 @@ export default async function MyClassesPage() {
     const statusConfig = {
       registered: { 
         label: "Terdaftar", 
-        color: "bg-blue-100 text-blue-800 border-blue-200",
+        color: "bg-slate-100 text-slate-700 border-slate-200",
         icon: Clock 
       },
       confirmed: { 
         label: "Dikonfirmasi", 
-        color: "bg-green-100 text-green-800 border-green-200",
+        color: "bg-green-50 text-green-700 border-green-200",
         icon: CheckCircle 
       },
       cancelled: { 
         label: "Dibatalkan", 
-        color: "bg-red-100 text-red-800 border-red-200",
+        color: "bg-red-50 text-red-700 border-red-200",
         icon: XCircle 
       },
     };
@@ -83,9 +83,9 @@ export default async function MyClassesPage() {
 
   const getClassTypeBadge = (type: string) => {
     const typeConfig = {
-      kaiwa: { label: "Kaiwa", color: "bg-blue-100 text-blue-800 border-blue-200" },
-      intensif: { label: "Intensif", color: "bg-purple-100 text-purple-800 border-purple-200" },
-      jlpt: { label: "JLPT", color: "bg-green-100 text-green-800 border-green-200" },
+      kaiwa: { label: "Kaiwa", color: "bg-[#2B3E7C]/10 text-[#2B3E7C] border-[#2B3E7C]/20" },
+      intensif: { label: "Intensif", color: "bg-[#ff6154]/10 text-[#ff6154] border-[#ff6154]/20" },
+      jlpt: { label: "JLPT", color: "bg-green-50 text-green-700 border-green-200" },
     };
     const config = typeConfig[type as keyof typeof typeConfig] || typeConfig.kaiwa;
     return (
@@ -115,67 +115,75 @@ export default async function MyClassesPage() {
 
   return (
     <div className="max-w-6xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Kelas Saya</h1>
-        <p className="text-gray-600 mt-2">
-          Kelola kelas-kelas yang Anda ikuti
-        </p>
+      {/* Header */}
+      <div className="mb-8 bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
+        <div className="flex items-center gap-4">
+          <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
+            <GraduationCap className="h-8 w-8 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900">Kelas Saya</h1>
+            <p className="text-slate-600 mt-1">
+              Kelola kelas-kelas yang Anda ikuti
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-blue-900">Total Kelas</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">Total Kelas</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {enrollments?.length || 0}
               </p>
             </div>
-            <div className="p-3 bg-blue-200/50 rounded-lg">
-              <GraduationCap className="h-6 w-6 text-blue-700" />
+            <div className="p-3 bg-slate-100 rounded-lg">
+              <GraduationCap className="h-6 w-6 text-slate-600" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 border border-green-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-green-900">Aktif</p>
-              <p className="text-2xl font-bold text-green-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">Aktif</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {enrollments?.filter(e => e.status === 'confirmed').length || 0}
               </p>
             </div>
-            <div className="p-3 bg-green-200/50 rounded-lg">
-              <CheckCircle className="h-6 w-6 text-green-700" />
+            <div className="p-3 bg-green-50 rounded-lg">
+              <CheckCircle className="h-6 w-6 text-green-600" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-4 border border-yellow-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-yellow-900">Menunggu</p>
-              <p className="text-2xl font-bold text-yellow-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">Menunggu</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {enrollments?.filter(e => e.status === 'registered').length || 0}
               </p>
             </div>
-            <div className="p-3 bg-yellow-200/50 rounded-lg">
-              <Clock className="h-6 w-6 text-yellow-700" />
+            <div className="p-3 bg-[#ff6154]/10 rounded-lg">
+              <Clock className="h-6 w-6 text-[#ff6154]" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-4 border border-purple-200">
+        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-purple-900">JLPT</p>
-              <p className="text-2xl font-bold text-purple-900 mt-1">
+              <p className="text-sm font-medium text-slate-600">JLPT</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">
                 {enrollments?.filter(e => e.classes?.class_type === 'jlpt').length || 0}
               </p>
             </div>
-            <div className="p-3 bg-purple-200/50 rounded-lg">
-              <BookOpen className="h-6 w-6 text-purple-700" />
+            <div className="p-3 bg-[#2B3E7C]/10 rounded-lg">
+              <BookOpen className="h-6 w-6 text-[#2B3E7C]" />
             </div>
           </div>
         </div>
@@ -205,7 +213,7 @@ export default async function MyClassesPage() {
                           className="h-20 w-20 rounded-lg object-cover border border-gray-200"
                         />
                       ) : (
-                        <div className="h-20 w-20 rounded-lg bg-gradient-to-br from-brand-primary to-brand-dark flex items-center justify-center flex-shrink-0">
+                        <div className="h-20 w-20 rounded-lg bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center flex-shrink-0">
                           <GraduationCap className="h-10 w-10 text-white" />
                         </div>
                       )}
@@ -218,10 +226,10 @@ export default async function MyClassesPage() {
                               href={`/classes/${cls?.slug}`}
                               className="group flex items-center gap-2"
                             >
-                              <h3 className="font-semibold text-lg text-gray-900 group-hover:text-brand-primary transition-colors">
+                              <h3 className="font-semibold text-lg text-slate-900 group-hover:text-[#2B3E7C] transition-colors">
                                 {cls?.title}
                               </h3>
-                              <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-brand-primary" />
+                              <ExternalLink className="h-4 w-4 text-slate-400 group-hover:text-[#2B3E7C]" />
                             </Link>
                             <div className="flex items-center gap-2 mt-1">
                               {getClassTypeBadge(cls?.class_type)}
@@ -235,22 +243,22 @@ export default async function MyClassesPage() {
                         </div>
 
                         {cls?.description && (
-                          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                          <p className="text-slate-600 text-sm mb-3 line-clamp-2">
                             {cls.description}
                           </p>
                         )}
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
                           {cls?.instructor_name && (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <BookOpen className="h-4 w-4 text-gray-400" />
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <BookOpen className="h-4 w-4 text-slate-400" />
                               <span>{cls.instructor_name}</span>
                             </div>
                           )}
                           
                           {cls?.start_date && (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <Calendar className="h-4 w-4 text-gray-400" />
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <Calendar className="h-4 w-4 text-slate-400" />
                               <span>
                                 {new Date(cls.start_date).toLocaleDateString('id-ID', {
                                   day: 'numeric',
@@ -262,35 +270,35 @@ export default async function MyClassesPage() {
                           )}
 
                           {cls?.duration_hours && (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <Clock className="h-4 w-4 text-gray-400" />
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <Clock className="h-4 w-4 text-slate-400" />
                               <span>{cls.duration_hours} jam</span>
                             </div>
                           )}
 
                           {cls?.is_online ? (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <Video className="h-4 w-4 text-gray-400" />
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <Video className="h-4 w-4 text-slate-400" />
                               <span>Online</span>
                             </div>
                           ) : cls?.location ? (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <MapPin className="h-4 w-4 text-gray-400" />
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <MapPin className="h-4 w-4 text-slate-400" />
                               <span>{cls.location}</span>
                             </div>
                           ) : null}
 
                           {cls?.max_students && (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <Users className="h-4 w-4 text-gray-400" />
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <Users className="h-4 w-4 text-slate-400" />
                               <span>{cls.enrolled_count || 0}/{cls.max_students} peserta</span>
                             </div>
                           )}
 
                           {cls?.price && (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <DollarSign className="h-4 w-4 text-gray-400" />
-                              <span className="font-semibold text-brand-primary">
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <DollarSign className="h-4 w-4 text-slate-400" />
+                              <span className="font-semibold text-[#ff6154]">
                                 {formatPrice(Number(cls.price), cls.currency)}
                               </span>
                             </div>
