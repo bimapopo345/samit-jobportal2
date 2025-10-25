@@ -71,9 +71,9 @@ export default async function ClassesPage({
 
   const getClassTypeBadge = (type: string) => {
     const typeConfig = {
-      kaiwa: { label: "Kaiwa", color: "bg-blue-100 text-blue-800" },
-      intensif: { label: "Intensif", color: "bg-purple-100 text-purple-800" },
-      jlpt: { label: "JLPT", color: "bg-green-100 text-green-800" },
+      kaiwa: { label: "Kaiwa", color: "bg-blue-50 text-blue-700 border border-blue-200" },
+      intensif: { label: "Intensif", color: "bg-purple-50 text-purple-700 border border-purple-200" },
+      jlpt: { label: "JLPT", color: "bg-green-50 text-green-700 border border-green-200" },
     };
     const config = typeConfig[type as keyof typeof typeConfig] || typeConfig.kaiwa;
     return (
@@ -86,97 +86,114 @@ export default async function ClassesPage({
   return (
     <>
       <Header />
-      <main className="flex-1 bg-gradient-to-br from-white via-green-50/30 to-emerald-50/30">
-        {/* Page Header - COLORFUL */}
-        <section className="bg-gradient-to-br from-emerald-400 via-teal-400 to-green-400 py-16 px-4 relative overflow-hidden">
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-          <div className="absolute top-10 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-green-300/30 rounded-full blur-3xl animate-pulse delay-700"></div>
+      <main className="flex-1 bg-slate-50 min-h-screen">
+        {/* Hero Section */}
+        <section
+          className="relative isolate overflow-hidden bg-slate-900"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=1920&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-900/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-slate-900/60 to-slate-900/80" />
           
-          <div className="container mx-auto max-w-6xl relative">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+          <div className="relative z-10 px-4 py-20 sm:py-24">
+            <div className="container mx-auto max-w-6xl text-center">
+              <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                 <GraduationCap className="h-5 w-5 text-white" />
-                <span className="text-sm font-bold text-white">Pembelajaran Terbaik</span>
+                <span className="text-sm font-semibold text-white">Japanese Language Learning</span>
               </div>
-              <h1 className="text-5xl font-black text-white mb-3 drop-shadow-lg">
-                🎌 Kelas Bahasa Jepang
+              <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl text-white mb-4">
+                Kelas Bahasa <span className="text-[#ff6154]">Jepang</span>
               </h1>
-              <p className="text-xl text-white/95 font-medium">
-                Tingkatkan kemampuan bahasa Jepang dengan instruktur berpengalaman dari SAMIT
+              <p className="text-xl text-white/90 max-w-2xl mx-auto">
+                {count ? `${count} kelas tersedia untuk mengembangkan kemampuan bahasa Jepang Anda` : 'Tingkatkan kemampuan bahasa Jepang dengan instruktur berpengalaman dari SAMIT'}
               </p>
             </div>
           </div>
         </section>
 
-        {/* Filters - COLORFUL */}
-        <section className="container mx-auto max-w-6xl px-4 py-8">
-          <form className="flex flex-col sm:flex-row gap-3 bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl shadow-lg border border-green-100" action="/classes" method="get">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-3.5 h-5 w-5 text-green-500" />
-              <Input
-                type="text"
-                name="search"
-                placeholder="🔍 Cari kelas impian Anda..."
-                defaultValue={searchParams.search}
-                className="pl-10 h-12 border-green-200 focus:border-green-400 font-medium text-gray-800 bg-white/80"
-              />
-            </div>
-            
-            <Select name="type" defaultValue={searchParams.type || "all"}>
-              <SelectTrigger className="w-full sm:w-40">
-                <SelectValue placeholder="Tipe Kelas" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Semua Tipe</SelectItem>
-                <SelectItem value="kaiwa">Kaiwa</SelectItem>
-                <SelectItem value="intensif">Intensif</SelectItem>
-                <SelectItem value="jlpt">JLPT</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {searchParams.type === 'jlpt' && (
-              <Select name="level" defaultValue={searchParams.level || "all"}>
-                <SelectTrigger className="w-full sm:w-32">
-                  <SelectValue placeholder="Level" />
+        {/* Search Section */}
+        <section className="container mx-auto max-w-5xl px-4 -mt-8 relative z-10">
+          <div className="bg-white rounded-2xl shadow-xl p-6 border border-slate-100">
+            <form className="flex flex-col sm:flex-row gap-3" action="/classes" method="get">
+              <div className="flex-1 relative">
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+                <Input
+                  type="text"
+                  name="search"
+                  placeholder="Cari kelas bahasa Jepang..."
+                  defaultValue={searchParams.search}
+                  className="h-12 rounded-full border border-transparent bg-slate-50 pl-12 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60"
+                />
+              </div>
+              
+              <Select name="type" defaultValue={searchParams.type || "all"}>
+                <SelectTrigger className="w-full sm:w-40 h-12 rounded-full border border-transparent bg-slate-50 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60">
+                  <SelectValue placeholder="Tipe Kelas" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Semua Level</SelectItem>
-                  <SelectItem value="N5">N5</SelectItem>
-                  <SelectItem value="N4">N4</SelectItem>
-                  <SelectItem value="N3">N3</SelectItem>
-                  <SelectItem value="N2">N2</SelectItem>
-                  <SelectItem value="N1">N1</SelectItem>
+                <SelectContent className="rounded-xl border border-slate-100 shadow-xl">
+                  <SelectItem value="all">Semua Tipe</SelectItem>
+                  <SelectItem value="kaiwa">Kaiwa</SelectItem>
+                  <SelectItem value="intensif">Intensif</SelectItem>
+                  <SelectItem value="jlpt">JLPT</SelectItem>
                 </SelectContent>
               </Select>
-            )}
 
-            <Button 
-              type="submit"
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-emerald-500 hover:to-green-500 text-white font-bold px-8 shadow-lg hover:shadow-xl transition-all hover:scale-105"
-            >
-              <Search className="mr-2 h-4 w-4" />
-              Cari Kelas
-            </Button>
-            
-            {(searchParams.type || searchParams.level || searchParams.search) && (
-              <Button type="button" variant="outline" asChild className="border-green-300 text-green-700 hover:bg-green-50 font-semibold">
-                <Link href="/classes">
-                  ↻ Reset
-                </Link>
+              {searchParams.type === 'jlpt' && (
+                <Select name="level" defaultValue={searchParams.level || "all"}>
+                  <SelectTrigger className="w-full sm:w-32 h-12 rounded-full border border-transparent bg-slate-50 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60">
+                    <SelectValue placeholder="Level" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-xl border border-slate-100 shadow-xl">
+                    <SelectItem value="all">Semua Level</SelectItem>
+                    <SelectItem value="N5">N5</SelectItem>
+                    <SelectItem value="N4">N4</SelectItem>
+                    <SelectItem value="N3">N3</SelectItem>
+                    <SelectItem value="N2">N2</SelectItem>
+                    <SelectItem value="N1">N1</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+
+              <Button 
+                type="submit"
+                className="h-12 rounded-full bg-gradient-to-r from-[#ff7a45] to-[#ff5555] px-6 text-sm font-semibold shadow-lg transition hover:from-[#ff5555] hover:to-[#ff7a45] hover:shadow-xl"
+              >
+                Cari
               </Button>
-            )}
-          </form>
+              
+              {(searchParams.type || searchParams.level || searchParams.search) && (
+                <Button type="button" variant="outline" asChild className="h-12 rounded-full border-slate-200 text-slate-600 hover:bg-slate-50">
+                  <Link href="/classes">
+                    Reset
+                  </Link>
+                </Button>
+              )}
+            </form>
+          </div>
         </section>
 
         {/* Classes Grid */}
-        <section className="container mx-auto max-w-6xl px-4 pb-12">
+        <section className="container mx-auto max-w-6xl px-4 py-12">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-slate-900 mb-2">
+              Kelas Tersedia
+            </h2>
+            <p className="text-slate-600">
+              Pilih kelas yang sesuai dengan level dan kebutuhan Anda
+            </p>
+          </div>
+
           {classes && classes.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {classes.map((cls) => (
                   <Link key={cls.id} href={`/classes/${cls.slug}`}>
-                    <div className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow overflow-hidden h-full">
+                    <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 overflow-hidden h-full border border-slate-100">
                       {/* Class Image */}
                       {cls.image_url ? (
                         <img
@@ -185,15 +202,15 @@ export default async function ClassesPage({
                           className="w-full h-48 object-cover"
                         />
                       ) : (
-                        <div className="w-full h-48 bg-gradient-to-br from-brand-primary to-brand-dark flex items-center justify-center">
-                          <GraduationCap className="h-16 w-16 text-white/50" />
+                        <div className="w-full h-48 bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
+                          <GraduationCap className="h-16 w-16 text-white" />
                         </div>
                       )}
 
                       <div className="p-6">
                         {/* Title and Type */}
                         <div className="flex items-start justify-between mb-3">
-                          <h3 className="font-semibold text-lg line-clamp-2 flex-1">
+                          <h3 className="font-semibold text-lg text-slate-900 line-clamp-2 flex-1">
                             {cls.title}
                           </h3>
                           {getClassTypeBadge(cls.class_type)}
@@ -201,20 +218,20 @@ export default async function ClassesPage({
 
                         {/* JLPT Level Badge */}
                         {cls.jlpt_level && (
-                          <Badge variant="outline" className="mb-3">
+                          <Badge variant="outline" className="mb-3 border-[#ff6154] text-[#ff6154]">
                             JLPT {cls.jlpt_level}
                           </Badge>
                         )}
 
                         {/* Description */}
                         {cls.description && (
-                          <p className="text-gray-600 text-sm line-clamp-2 mb-4">
+                          <p className="text-slate-600 text-sm line-clamp-2 mb-4">
                             {cls.description}
                           </p>
                         )}
 
                         {/* Class Info */}
-                        <div className="space-y-2 text-sm text-gray-500">
+                        <div className="space-y-2 text-sm text-slate-500 mb-4">
                           {cls.instructor_name && (
                             <div className="flex items-center gap-2">
                               <BookOpen className="h-4 w-4" />
@@ -264,10 +281,10 @@ export default async function ClassesPage({
                         </div>
 
                         {/* Price */}
-                        <div className="mt-4 pt-4 border-t">
+                        <div className="mt-auto pt-4 border-t border-slate-100">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-600">Biaya:</span>
-                            <span className="font-semibold text-brand-primary">
+                            <span className="text-sm text-slate-600">Biaya:</span>
+                            <span className="font-semibold text-[#ff6154]">
                               {cls.price 
                                 ? formatPrice(Number(cls.price), cls.currency)
                                 : "Gratis"
@@ -281,14 +298,14 @@ export default async function ClassesPage({
                 ))}
               </div>
 
-              {/* Pagination - COLORFUL */}
+              {/* Pagination */}
               {totalPages > 1 && (
-                <div className="mt-8 flex justify-center gap-2 bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl shadow-lg">
+                <div className="mt-12 flex justify-center gap-2">
                   {page > 1 && (
                     <Button 
                       variant="outline" 
                       asChild
-                      className="border-green-300 text-green-700 hover:bg-green-100 font-bold"
+                      className="border-slate-200 text-slate-600 hover:bg-slate-50"
                     >
                       <Link href={`/classes?page=${page - 1}${
                         searchParams.type ? `&type=${searchParams.type}` : ''
@@ -297,7 +314,7 @@ export default async function ClassesPage({
                       }${
                         searchParams.search ? `&search=${searchParams.search}` : ''
                       }`}>
-                        Previous
+                        ← Previous
                       </Link>
                     </Button>
                   )}
@@ -321,6 +338,10 @@ export default async function ClassesPage({
                           variant={page === pageNum ? "default" : "outline"}
                           size="icon"
                           asChild
+                          className={page === pageNum 
+                            ? "bg-[#2B3E7C] text-white border-0 hover:bg-[#1e2a5a]" 
+                            : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                          }
                         >
                           <Link href={`/classes?page=${pageNum}${
                             searchParams.type ? `&type=${searchParams.type}` : ''
@@ -337,7 +358,11 @@ export default async function ClassesPage({
                   </div>
 
                   {page < totalPages && (
-                    <Button variant="outline" asChild>
+                    <Button 
+                      variant="outline" 
+                      asChild
+                      className="border-slate-200 text-slate-600 hover:bg-slate-50"
+                    >
                       <Link href={`/classes?page=${page + 1}${
                         searchParams.type ? `&type=${searchParams.type}` : ''
                       }${
@@ -345,7 +370,7 @@ export default async function ClassesPage({
                       }${
                         searchParams.search ? `&search=${searchParams.search}` : ''
                       }`}>
-                        Next
+                        Next →
                       </Link>
                     </Button>
                   )}
@@ -353,17 +378,66 @@ export default async function ClassesPage({
               )}
             </>
           ) : (
-            <div className="text-center py-12">
-              <GraduationCap className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-              <p className="text-gray-600 mb-4">Tidak ada kelas yang ditemukan</p>
+            <div className="text-center py-16">
+              <GraduationCap className="mx-auto h-16 w-16 text-slate-400 mb-6" />
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">Tidak ada kelas yang ditemukan</h3>
+              <p className="text-slate-600 mb-6">Coba gunakan filter yang berbeda atau ubah kata kunci pencarian</p>
               {(searchParams.search || searchParams.type || searchParams.level) && (
-                <Button asChild variant="outline">
+                <Button asChild variant="outline" className="border-slate-200 text-slate-600 hover:bg-slate-50">
                   <Link href="/classes">Lihat Semua Kelas</Link>
                 </Button>
               )}
             </div>
           )}
         </section>
+
+        {/* Footer */}
+        <footer className="bg-white border-t py-12 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              {/* Left - Logo & Info */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">S</span>
+                  </div>
+                  <div>
+                    <div className="font-bold text-xl text-[#2B3E7C]">SAMIT</div>
+                    <div className="text-sm text-gray-600">Sakura Mitra Indonesia</div>
+                  </div>
+                </div>
+
+                <h3 className="font-bold text-lg mb-4">Enquiries</h3>
+                <div className="text-sm text-gray-700 space-y-1">
+                  <p className="font-semibold">Sakura Mitra Indonesia</p>
+                  <p>Jakarta, Indonesia</p>
+                  <p className="mt-4">Email: contact@sakuramitra.com</p>
+                </div>
+              </div>
+
+              {/* Right - Connect */}
+              <div className="text-right">
+                <h3 className="font-bold text-lg mb-4">Connect</h3>
+                <div className="flex gap-3 justify-end">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">📷</span>
+                  </div>
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">💼</span>
+                  </div>
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">📘</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Bottom */}
+            <div className="border-t pt-8 text-center text-sm text-gray-600">
+              <p>© 2025 SAMIT - Sakura Mitra Indonesia. All Right Reserved.</p>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );
