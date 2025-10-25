@@ -373,9 +373,11 @@ export default async function JobsPage({
               {/* Left - Logo & Info */}
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">S</span>
-                  </div>
+                  <img 
+                    src="/logo.png" 
+                    alt="SAMIT Logo" 
+                    className="w-12 h-12 object-contain"
+                  />
                   <div>
                     <div className="font-bold text-xl text-[#2B3E7C]">SAMIT</div>
                     <div className="text-sm text-gray-600">Sakura Mitra Indonesia</div>
@@ -385,7 +387,10 @@ export default async function JobsPage({
                 <h3 className="font-bold text-lg mb-4">Enquiries</h3>
                 <div className="text-sm text-gray-700 space-y-1">
                   <p className="font-semibold">Sakura Mitra Indonesia</p>
-                  <p>Jakarta, Indonesia</p>
+                  <p>Ruko Dalton Utara Blok DLNU 05</p>
+                  <p>Jl. Scientia Square Selatan</p>
+                  <p>Kelurahan Curug Sangereng, Kecamatan Klp. Dua</p>
+                  <p>Kabupaten Tangerang, Banten 15810</p>
                   <p className="mt-4">Email: contact@sakuramitra.com</p>
                 </div>
               </div>

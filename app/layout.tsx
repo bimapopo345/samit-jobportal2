@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   description: "Find jobs in Japan, connect with Japanese companies, and access Japanese language classes. Specialized platform for Indonesia-Japan employment.",
   keywords: "jobs japan, kerja di jepang, lowongan jepang, JLPT, nihongo, gijinkoku",
   authors: [{ name: "SAMIT - Sakura Mitra Indonesia" }],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "SAMIT Job Portal - Japan Employment Opportunities",
     description: "Find jobs in Japan, connect with Japanese companies, and access Japanese language classes",
@@ -22,11 +27,13 @@ export const metadata: Metadata = {
     siteName: "SAMIT Job Portal",
     locale: "id_ID",
     type: "website",
+    images: ["/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "SAMIT Job Portal",
     description: "Japan Employment & Learning Platform",
+    images: ["/logo.png"],
   },
 };
 

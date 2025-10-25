@@ -47,7 +47,7 @@ export default async function Home() {
     <>
       <Header />
       <main className="flex flex-1 flex-col">
-        {/* Hero Section - 100% KapanJepan Style */}
+        {/* Hero Section - SAMIT Style */}
         <section className="relative bg-[#FFF8F0] py-12 md:py-20 px-4 overflow-hidden">
           {/* Decorative Sakura Flowers */}
           <div className="absolute top-8 left-8 md:top-16 md:left-16 w-12 h-12 md:w-16 md:h-16 opacity-40">
@@ -235,7 +235,7 @@ export default async function Home() {
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl md:text-3xl font-bold text-center text-[#2B3E7C] mb-12">
-              Beberapa Klien yang Bekerja Sama dengan KapanJepan
+              Beberapa Klien yang Bekerja Sama dengan SAMIT
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 md:gap-8 items-center justify-items-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
@@ -260,7 +260,7 @@ export default async function Home() {
                 <div className="bg-gradient-to-br from-[#3B5998] to-[#2C4679] p-8 md:p-10 min-h-[400px] flex flex-col justify-between">
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                      KapanJepan Tokutei Ginou
+                      SAMIT Tokutei Ginou
                     </h3>
                     <p className="text-white/90 text-base md:text-lg mb-6">
                       Platform pencarian kerja populer untuk program Tokutei Ginou (Specified Skilled Worker).
@@ -282,10 +282,10 @@ export default async function Home() {
                 <div className="bg-gradient-to-br from-[#FF6B6B] to-[#FF4545] p-8 md:p-10 min-h-[400px] flex flex-col justify-between">
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                      KapanJepan Language School
+                      SAMIT Language School
                     </h3>
                     <p className="text-white/90 text-base md:text-lg mb-6">
-                      Tingkatkan kemampuan bahasa Jepang kamu dengan bergabung KapanJepan Language School.
+                      Tingkatkan kemampuan bahasa Jepang kamu dengan bergabung SAMIT Language School.
                     </p>
                     <Button className="bg-[#3B5998] hover:bg-[#2C4679] text-white font-bold rounded-full">
                       Coming soon
@@ -465,7 +465,7 @@ export default async function Home() {
         <section className="py-20 px-4 bg-[#FFF8F0]">
           <div className="container mx-auto max-w-5xl">
             <h2 className="text-2xl md:text-3xl font-bold text-center text-[#2B3E7C] mb-16">
-              Raih mimpimu bersama KapanJepan
+              Raih mimpimu bersama SAMIT
             </h2>
             
             <div className="relative">
@@ -477,9 +477,9 @@ export default async function Home() {
                 </div>
 
                 <p className="text-gray-700 text-center text-base md:text-lg leading-relaxed mb-8">
-                  Berkat KapanJepan, saya bisa mendapatkan pekerjaan impian saya, saya benar-benar di-support dari NOL. 
+                  Berkat SAMIT, saya bisa mendapatkan pekerjaan impian saya, saya benar-benar di-support dari NOL. 
                   Bahkan setelah bekerja pun, saya masih sering ngobrol dan mendapatkan banyak nasehat dari mentor saya. 
-                  I really appreciate it, terima kasih KapanJepan!
+                  I really appreciate it, terima kasih SAMIT!
                 </p>
 
                 {/* Profile Photo */}
@@ -569,9 +569,11 @@ export default async function Home() {
               {/* Left - Logo & Info */}
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">S</span>
-                  </div>
+                  <img 
+                    src="/logo.png" 
+                    alt="SAMIT Logo" 
+                    className="w-12 h-12 object-contain"
+                  />
                   <div>
                     <div className="font-bold text-xl text-[#2B3E7C]">SAMIT</div>
                     <div className="text-sm text-gray-600">Sakura Mitra Indonesia</div>
@@ -581,7 +583,10 @@ export default async function Home() {
                 <h3 className="font-bold text-lg mb-4">Enquiries</h3>
                 <div className="text-sm text-gray-700 space-y-1">
                   <p className="font-semibold">Sakura Mitra Indonesia</p>
-                  <p>Jakarta, Indonesia</p>
+                  <p>Ruko Dalton Utara Blok DLNU 05</p>
+                  <p>Jl. Scientia Square Selatan</p>
+                  <p>Kelurahan Curug Sangereng, Kecamatan Klp. Dua</p>
+                  <p>Kabupaten Tangerang, Banten 15810</p>
                   <p className="mt-4">Email: contact@sakuramitra.com</p>
                 </div>
               </div>
