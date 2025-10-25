@@ -49,62 +49,101 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+      {/* Logo & Title */}
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <img 
+            src="/logo.png" 
+            alt="SAMIT Logo" 
+            className="w-16 h-16 object-contain"
+          />
+          <div>
+            <div className="font-bold text-2xl text-white">SAMIT</div>
+            <div className="text-sm text-white/80">Sakura Mitra Indonesia</div>
+          </div>
+        </div>
+        <h1 className="text-3xl font-bold text-white mb-2">おかえりなさい</h1>
+        <p className="text-white/80 text-sm">Welcome back! Sign in to your account</p>
+      </div>
+
+      <Card className="backdrop-blur-md bg-white/95 border-0 shadow-2xl">
+        <CardContent className="p-8">
           <form onSubmit={handleLogin}>
             <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+              <div className="grid gap-3">
+                <Label htmlFor="email" className="text-slate-700 font-medium">Email</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="your.email@example.com"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="h-12 rounded-lg border border-slate-200 bg-white/50 backdrop-blur-sm focus:border-[#ff6154] focus:ring-2 focus:ring-[#ff6154]/20 transition-all"
                 />
               </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+              <div className="grid gap-3">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password" className="text-slate-700 font-medium">Password</Label>
                   <Link
                     href="/auth/forgot-password"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                    className="text-sm text-[#ff6154] hover:text-[#ff4438] font-medium transition-colors"
                   >
-                    Forgot your password?
+                    Forgot password?
                   </Link>
                 </div>
                 <Input
                   id="password"
                   type="password"
+                  placeholder="Enter your password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="h-12 rounded-lg border border-slate-200 bg-white/50 backdrop-blur-sm focus:border-[#ff6154] focus:ring-2 focus:ring-[#ff6154]/20 transition-all"
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Logging in..." : "Login"}
+              
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                  <p className="text-sm text-red-600">{error}</p>
+                </div>
+              )}
+              
+              <Button 
+                type="submit" 
+                className="w-full h-12 bg-gradient-to-r from-[#ff7a45] to-[#ff5555] hover:from-[#ff5555] hover:to-[#ff7a45] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02]"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Signing in...
+                  </div>
+                ) : (
+                  "Sign In"
+                )}
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/auth/sign-up"
-                className="underline underline-offset-4"
-              >
-                Sign up
-              </Link>
+            
+            <div className="mt-6 text-center">
+              <p className="text-slate-600 text-sm">
+                Don't have an account?{" "}
+                <Link
+                  href="/auth/sign-up"
+                  className="text-[#2B3E7C] hover:text-[#1e2a5a] font-semibold transition-colors"
+                >
+                  Create one here
+                </Link>
+              </p>
             </div>
           </form>
         </CardContent>
       </Card>
+      
+      {/* Japanese Elements */}
+      <div className="text-center text-white/60 text-xs">
+        <p>頑張って！• がんばって！• Ganbatte!</p>
+      </div>
     </div>
   );
 }
