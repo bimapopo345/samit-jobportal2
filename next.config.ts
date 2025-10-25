@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     domains: [
       'localhost',
       'api.dicebear.com', // for placeholder avatars
+      'images.unsplash.com', // hero backgrounds
     ],
     remotePatterns: [
       {
@@ -49,7 +50,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `default-src 'self'; img-src 'self' data: blob: https://*.supabase.co https://api.dicebear.com; connect-src 'self' https://*.supabase.co; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-eval' 'unsafe-inline'; frame-src 'self'; media-src 'self' blob:`,
+            value: `default-src 'self'; img-src 'self' data: blob: https://*.supabase.co https://api.dicebear.com https://images.unsplash.com; connect-src 'self' https://*.supabase.co; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-eval' 'unsafe-inline'; frame-src 'self'; media-src 'self' blob:`,
           },
         ],
       },
