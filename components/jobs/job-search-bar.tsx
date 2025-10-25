@@ -98,7 +98,7 @@ export function JobSearchBar({
       onSubmit={handleSubmit}
       className="rounded-[32px] bg-white/95 p-4 shadow-xl ring-1 ring-black/5 backdrop-blur"
     >
-      <div className="grid gap-3 lg:grid-cols-[2fr,1.3fr,1.3fr,auto]">
+      <div className="grid gap-3 lg:grid-cols-[2fr,1.3fr,1.3fr,auto,auto]">
         <div className="relative">
           <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
           <Input
@@ -120,9 +120,9 @@ export function JobSearchBar({
         </div>
 
         <div className="relative">
-          <FolderClosed className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+          <FolderClosed className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 z-10" />
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="h-12 rounded-full border border-transparent bg-slate-50 pl-12 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60">
+            <SelectTrigger className="h-12 w-full rounded-full border border-transparent bg-slate-50 pl-12 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60 flex items-center">
               <SelectValue placeholder="Semua kategori" />
             </SelectTrigger>
             <SelectContent className="rounded-xl border border-slate-100 shadow-xl">
@@ -141,18 +141,18 @@ export function JobSearchBar({
         >
           Cari
         </Button>
+
+        {hasActiveFilters && (
+          <button
+            type="button"
+            onClick={handleClear}
+            className="h-12 px-4 text-sm font-semibold text-[#ff6154] transition hover:text-[#ff4438]"
+          >
+            Reset
+          </button>
+        )}
       </div>
 
-      <div className="mt-3 flex justify-end">
-        <button
-          type="button"
-          onClick={handleClear}
-          disabled={!hasActiveFilters}
-          className="text-sm font-semibold text-[#ff6154] transition hover:text-[#ff4438] disabled:cursor-not-allowed disabled:text-slate-400"
-        >
-          Reset
-        </button>
-      </div>
     </form>
   );
 }

@@ -59,110 +59,109 @@ export default async function CompaniesPage({
   return (
     <>
       <Header />
-      <main className="flex-1 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30 min-h-screen">
-        {/* Page Header - COLORFUL GRADIENT */}
-        <section className="bg-gradient-to-br from-purple-400 via-pink-400 to-indigo-400 py-16 px-4 relative overflow-hidden">
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-          <div className="absolute top-10 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl"></div>
+      <main className="flex-1 bg-slate-50 min-h-screen">
+        {/* Hero Section */}
+        <section
+          className="relative isolate overflow-hidden bg-slate-900"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-900/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-slate-900/60 to-slate-900/80" />
           
-          <div className="container mx-auto max-w-6xl relative">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+          <div className="relative z-10 px-4 py-20 sm:py-24">
+            <div className="container mx-auto max-w-6xl text-center">
+              <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                 <Building2 className="h-5 w-5 text-white" />
-                <span className="text-sm font-bold text-white">Perusahaan Partner</span>
+                <span className="text-sm font-semibold text-white">Partner Companies</span>
               </div>
-              <h1 className="text-5xl font-black text-white mb-3 drop-shadow-lg">Daftar Perusahaan</h1>
-              <p className="text-xl text-white/95 font-medium">
-                {count ? `🌟 ${count} perusahaan terverifikasi siap merekrut Anda!` : '🔍 Mencari perusahaan terbaik...'}
+              <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl text-white mb-4">
+                Temukan Perusahaan <span className="text-[#ff6154]">Terbaik</span>
+              </h1>
+              <p className="text-xl text-white/90 max-w-2xl mx-auto">
+                {count ? `${count} perusahaan terverifikasi siap merekrut talenta terbaik Indonesia` : 'Mencari perusahaan terbaik untuk karir Anda'}
               </p>
             </div>
           </div>
         </section>
 
-        {/* Search Bar - COLORFUL */}
-        <section className="container mx-auto max-w-6xl px-4 py-8">
-          <form className="flex gap-3 bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-2xl shadow-lg border border-purple-100" action="/companies" method="get">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-3.5 h-5 w-5 text-purple-500" />
-              <Input
-                type="text"
-                name="search"
-                placeholder="🔍 Cari perusahaan impian Anda..."
-                defaultValue={searchParams.search}
-                className="pl-10 h-12 border-purple-200 focus:border-purple-400 font-medium text-gray-800 bg-white/80"
-              />
-            </div>
-            <Button 
-              type="submit"
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white font-bold px-8 shadow-lg hover:shadow-xl transition-all hover:scale-105"
-            >
-              <Search className="mr-2 h-4 w-4" />
-              Cari Perusahaan
-            </Button>
-          </form>
+        {/* Search Section */}
+        <section className="container mx-auto max-w-5xl px-4 -mt-8 relative z-10">
+          <div className="bg-white rounded-2xl shadow-xl p-6 border border-slate-100">
+            <form className="flex gap-3" action="/companies" method="get">
+              <div className="flex-1 relative">
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+                <Input
+                  type="text"
+                  name="search"
+                  placeholder="Cari nama perusahaan atau industri..."
+                  defaultValue={searchParams.search}
+                  className="h-12 rounded-full border border-transparent bg-slate-50 pl-12 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60"
+                />
+              </div>
+              <Button 
+                type="submit"
+                className="h-12 rounded-full bg-gradient-to-r from-[#ff7a45] to-[#ff5555] px-6 text-sm font-semibold shadow-lg transition hover:from-[#ff5555] hover:to-[#ff7a45] hover:shadow-xl"
+              >
+                Cari
+              </Button>
+            </form>
+          </div>
         </section>
 
-        {/* Companies Grid - COLORFUL */}
-        <section className="container mx-auto max-w-6xl px-4 pb-12 bg-white/30 backdrop-blur-sm rounded-3xl">
+        {/* Companies Grid */}
+        <section className="container mx-auto max-w-6xl px-4 py-12">
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-black text-gray-900">
-              🏢 Temukan{" "}
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Perusahaan Terbaik
-              </span>
+            <h2 className="text-3xl font-bold text-slate-900 mb-2">
+              Perusahaan Partner
             </h2>
+            <p className="text-slate-600">
+              Bergabunglah dengan perusahaan-perusahaan terkemuka di Indonesia
+            </p>
           </div>
           
           {organizations && organizations.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {organizations.map((org, index) => {
-                  const gradients = [
-                    "from-blue-50 to-indigo-50",
-                    "from-purple-50 to-pink-50",
-                    "from-green-50 to-emerald-50",
-                    "from-orange-50 to-red-50",
-                    "from-cyan-50 to-teal-50",
-                    "from-yellow-50 to-amber-50",
-                  ];
-                  const gradient = gradients[index % gradients.length];
-                  
-                  return (
-                    <Link key={org.id} href={`/companies/${org.slug}`}>
-                      <div className={`bg-gradient-to-br ${gradient} rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 p-6 h-full border border-white/50`}>
-                        {/* Company Header */}
-                        <div className="flex items-start gap-4 mb-4">
-                          {org.logo_url ? (
-                            <img
-                              src={org.logo_url}
-                              alt={org.display_name}
-                              className="h-16 w-16 rounded-xl object-cover shadow-md border-2 border-white"
-                            />
-                          ) : (
-                            <div className="h-16 w-16 rounded-xl bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-md">
-                              <Building2 className="h-8 w-8 text-white" />
-                            </div>
-                          )}
-                          <div className="flex-1">
-                            <h3 className="font-bold text-xl text-gray-900 line-clamp-1">
-                              {org.display_name}
-                            </h3>
-                            {org.industry && (
-                              <p className="text-sm text-gray-700 font-medium">{org.industry}</p>
-                            )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {organizations.map((org) => (
+                  <Link key={org.id} href={`/companies/${org.slug}`}>
+                    <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 p-6 h-full border border-slate-100">
+                      {/* Company Header */}
+                      <div className="flex items-start gap-4 mb-4">
+                        {org.logo_url ? (
+                          <img
+                            src={org.logo_url}
+                            alt={org.display_name}
+                            className="h-12 w-12 rounded-lg object-cover"
+                          />
+                        ) : (
+                          <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] flex items-center justify-center">
+                            <Building2 className="h-6 w-6 text-white" />
                           </div>
+                        )}
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-lg text-slate-900 line-clamp-1">
+                            {org.display_name}
+                          </h3>
+                          {org.industry && (
+                            <p className="text-sm text-slate-600">{org.industry}</p>
+                          )}
                         </div>
+                      </div>
 
                       {/* Description */}
                       {org.description && (
-                        <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                        <p className="text-slate-600 text-sm line-clamp-3 mb-4">
                           {org.description}
                         </p>
                       )}
 
                       {/* Company Info */}
-                      <div className="space-y-2 text-sm text-gray-500">
+                      <div className="space-y-2 text-sm text-slate-500 mb-4">
                         {org.address && (
                           <div className="flex items-center gap-2">
                             <MapPin className="h-4 w-4" />
@@ -184,32 +183,31 @@ export default async function CompaniesPage({
                         {org.website && (
                           <div className="flex items-center gap-2">
                             <Globe className="h-4 w-4" />
-                            <span className="line-clamp-1">{org.website}</span>
+                            <span className="line-clamp-1">{org.website.replace(/^https?:\/\//, '')}</span>
                           </div>
                         )}
                       </div>
 
-                        {/* Active Jobs Badge */}
-                        <div className="mt-4 pt-4 border-t">
-                          <Badge variant="secondary" className="w-full justify-center">
-                            <Briefcase className="h-3 w-3 mr-1" />
-                            {jobCountMap[org.id] || 0} lowongan aktif
-                          </Badge>
+                      {/* Active Jobs Badge */}
+                      <div className="mt-auto pt-4 border-t border-slate-100">
+                        <div className="flex items-center justify-center gap-1 text-sm text-slate-600">
+                          <Briefcase className="h-4 w-4 text-[#ff6154]" />
+                          <span className="font-medium">{jobCountMap[org.id] || 0} lowongan aktif</span>
                         </div>
                       </div>
-                    </Link>
-                  );
-                })}
+                    </div>
+                  </Link>
+                ))}
               </div>
 
-              {/* Pagination - COLORFUL */}
+              {/* Pagination */}
               {totalPages > 1 && (
-                <div className="mt-8 flex justify-center gap-2 bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-2xl shadow-lg">
+                <div className="mt-12 flex justify-center gap-2">
                   {page > 1 && (
                     <Button 
                       variant="outline" 
                       asChild
-                      className="border-purple-300 text-purple-700 hover:bg-purple-100 font-bold"
+                      className="border-slate-200 text-slate-600 hover:bg-slate-50"
                     >
                       <Link href={`/companies?page=${page - 1}${
                         searchParams.search ? `&search=${searchParams.search}` : ''
@@ -239,8 +237,8 @@ export default async function CompaniesPage({
                           size="icon"
                           asChild
                           className={page === pageNum 
-                            ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold border-0 shadow-lg" 
-                            : "border-purple-300 text-purple-700 hover:bg-purple-100 font-bold"
+                            ? "bg-[#2B3E7C] text-white border-0 hover:bg-[#1e2a5a]" 
+                            : "border-slate-200 text-slate-600 hover:bg-slate-50"
                           }
                         >
                           <Link href={`/companies?page=${pageNum}${
@@ -257,7 +255,7 @@ export default async function CompaniesPage({
                     <Button 
                       variant="outline" 
                       asChild
-                      className="border-purple-300 text-purple-700 hover:bg-purple-100 font-bold"
+                      className="border-slate-200 text-slate-600 hover:bg-slate-50"
                     >
                       <Link href={`/companies?page=${page + 1}${
                         searchParams.search ? `&search=${searchParams.search}` : ''
@@ -270,21 +268,70 @@ export default async function CompaniesPage({
               )}
             </>
           ) : (
-            <div className="text-center py-12">
-              <Building2 className="mx-auto h-12 w-12 text-purple-400 mb-4" />
-              <p className="text-gray-700 font-semibold mb-4">Tidak ada perusahaan yang ditemukan</p>
+            <div className="text-center py-16">
+              <Building2 className="mx-auto h-16 w-16 text-slate-400 mb-6" />
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">Tidak ada perusahaan yang ditemukan</h3>
+              <p className="text-slate-600 mb-6">Coba gunakan kata kunci pencarian yang berbeda</p>
               {searchParams.search && (
                 <Button 
                   asChild 
                   variant="outline"
-                  className="border-purple-300 text-purple-700 hover:bg-purple-100 font-bold"
+                  className="border-slate-200 text-slate-600 hover:bg-slate-50"
                 >
-                  <Link href="/companies">🔄 Hapus Pencarian</Link>
+                  <Link href="/companies">Hapus Pencarian</Link>
                 </Button>
               )}
             </div>
           )}
         </section>
+
+        {/* Footer */}
+        <footer className="bg-white border-t py-12 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              {/* Left - Logo & Info */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">S</span>
+                  </div>
+                  <div>
+                    <div className="font-bold text-xl text-[#2B3E7C]">SAMIT</div>
+                    <div className="text-sm text-gray-600">Sakura Mitra Indonesia</div>
+                  </div>
+                </div>
+
+                <h3 className="font-bold text-lg mb-4">Enquiries</h3>
+                <div className="text-sm text-gray-700 space-y-1">
+                  <p className="font-semibold">Sakura Mitra Indonesia</p>
+                  <p>Jakarta, Indonesia</p>
+                  <p className="mt-4">Email: contact@sakuramitra.com</p>
+                </div>
+              </div>
+
+              {/* Right - Connect */}
+              <div className="text-right">
+                <h3 className="font-bold text-lg mb-4">Connect</h3>
+                <div className="flex gap-3 justify-end">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">📷</span>
+                  </div>
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">💼</span>
+                  </div>
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">📘</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Bottom */}
+            <div className="border-t pt-8 text-center text-sm text-gray-600">
+              <p>© 2025 SAMIT - Sakura Mitra Indonesia. All Right Reserved.</p>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );

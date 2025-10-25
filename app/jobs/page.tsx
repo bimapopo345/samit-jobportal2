@@ -21,9 +21,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Filter,
-  Instagram,
-  Linkedin,
-  Facebook,
   ChevronDown,
 } from "lucide-react";
 import Link from "next/link";
@@ -347,6 +344,7 @@ export default async function JobsPage({
           </div>
         </section>
 
+        {/* CTA Section */}
         <section className="px-4 pb-16">
           <div className="mx-auto flex w-full max-w-5xl flex-col gap-10">
             <div className="rounded-[32px] bg-[#fff4df] px-10 py-12 text-center shadow-[0_30px_55px_-40px_rgba(255,97,84,0.6)]">
@@ -365,70 +363,56 @@ export default async function JobsPage({
                 <Link href="/auth/sign-up">Submit CV Sekarang</Link>
               </Button>
             </div>
-
-            <div className="rounded-[32px] border border-slate-100 bg-white px-10 py-12 shadow-[0_40px_60px_-45px_rgba(15,23,42,0.25)]">
-              <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#1f6bd8] to-[#2f3b8f] text-lg font-bold text-white shadow-lg">
-                      KJ
-                    </div>
-                    <div>
-                      <p className="text-lg font-semibold text-slate-900">
-                        KapanJepan
-                      </p>
-                      <p className="text-xs uppercase tracking-wide text-[#ff6154]">
-                        Career Diversity Inc.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-1 text-sm text-slate-600">
-                    <p className="font-semibold text-slate-900">Enquiries</p>
-                    <p>Career Diversity Inc. HQ</p>
-                    <p>
-                      Imon Asakusa Sushi-ya Dori Building 5th Floor Room 32,
-                      1-13-5, Asakusa, Taito, Tokyo, Japan
-                    </p>
-                    <p className="pt-2">Email: contact@kapanjepan.com</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-start gap-4 md:items-end">
-                  <p className="text-sm font-semibold uppercase tracking-widest text-slate-400">
-                    Connect
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <a
-                      href="https://www.instagram.com"
-                      className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-[#ff6154] hover:text-[#ff6154]"
-                      aria-label="Instagram"
-                    >
-                      <Instagram className="h-5 w-5" />
-                    </a>
-                    <a
-                      href="https://www.linkedin.com"
-                      className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-[#ff6154] hover:text-[#ff6154]"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                    <a
-                      href="https://www.facebook.com"
-                      className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-[#ff6154] hover:text-[#ff6154]"
-                      aria-label="Facebook"
-                    >
-                      <Facebook className="h-5 w-5" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-10 border-t border-slate-100 pt-6 text-center text-xs text-slate-400">
-                © 2024 KapanJepan. All Rights Reserved.
-              </div>
-            </div>
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="bg-white border-t py-12 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              {/* Left - Logo & Info */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#2B3E7C] to-[#4B5E9C] rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">S</span>
+                  </div>
+                  <div>
+                    <div className="font-bold text-xl text-[#2B3E7C]">SAMIT</div>
+                    <div className="text-sm text-gray-600">Sakura Mitra Indonesia</div>
+                  </div>
+                </div>
+
+                <h3 className="font-bold text-lg mb-4">Enquiries</h3>
+                <div className="text-sm text-gray-700 space-y-1">
+                  <p className="font-semibold">Sakura Mitra Indonesia</p>
+                  <p>Jakarta, Indonesia</p>
+                  <p className="mt-4">Email: contact@sakuramitra.com</p>
+                </div>
+              </div>
+
+              {/* Right - Connect */}
+              <div className="text-right">
+                <h3 className="font-bold text-lg mb-4">Connect</h3>
+                <div className="flex gap-3 justify-end">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">📷</span>
+                  </div>
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">💼</span>
+                  </div>
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                    <span className="text-lg">📘</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Bottom */}
+            <div className="border-t pt-8 text-center text-sm text-gray-600">
+              <p>© 2025 SAMIT - Sakura Mitra Indonesia. All Right Reserved.</p>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );

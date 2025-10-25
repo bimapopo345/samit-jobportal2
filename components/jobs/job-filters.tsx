@@ -216,8 +216,10 @@ function FilterGroup({ title, value, options, onChange }: FilterGroupProps) {
           <label
             key={option.value}
             className={cn(
-              "flex cursor-pointer items-center gap-3 rounded-xl border border-transparent p-3 text-sm font-medium text-slate-600 transition hover:border-[#ffd7cc] hover:bg-[#fff3ef]",
-              value === option.value && "border-[#ffb6a8] bg-[#fff3ef] text-slate-800"
+              "flex cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm font-medium transition",
+              value === option.value 
+                ? "border-[#ffb6a8] bg-[#fff3ef] text-slate-800" 
+                : "border-slate-200 bg-slate-50 text-slate-600 hover:border-[#ffd7cc] hover:bg-[#fff3ef]"
             )}
           >
             <RadioGroupItem
