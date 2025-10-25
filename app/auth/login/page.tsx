@@ -1,4 +1,5 @@
 import { LoginForm } from "@/components/login-form";
+import { DebugEnvVars } from "@/debug-env-vars";
 
 export default function Page() {
   return (
@@ -20,6 +21,7 @@ export default function Page() {
       
       <div className="relative z-10 w-full max-w-md p-6">
         <LoginForm />
+        <DebugEnvVars />
       </div>
     </div>
   );

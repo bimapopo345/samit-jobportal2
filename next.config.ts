@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
+  // Disable source maps to prevent 404 errors from Supabase dependencies
+  productionBrowserSourceMaps: false,
+  
   // Images optimization
   images: {
     domains: [
@@ -29,6 +32,16 @@ const nextConfig: NextConfig = {
   
   async headers() {
     return [
+      // Fix favicon conflict
+      {
+        source: '/favicon.ico',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400',
+          },
+        ],
+      },
       {
         source: '/:path*',
         headers: [
