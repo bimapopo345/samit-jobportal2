@@ -17,9 +17,7 @@ import {
   Clock,
   MapPin,
   Users,
-  DollarSign,
   Search,
-  Globe,
   BookOpen,
   Video,
 } from "lucide-react";

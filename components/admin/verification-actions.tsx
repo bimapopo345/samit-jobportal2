@@ -225,7 +225,7 @@ export function VerificationActions({
           <DialogHeader>
             <DialogTitle>Reject Organization</DialogTitle>
             <DialogDescription>
-              This will reject the organization's verification. They will not be able to post jobs.
+              This will reject the organization&apos;s verification. They will not be able to post jobs.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">

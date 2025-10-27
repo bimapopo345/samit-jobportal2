@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   FileText,
-  Upload,
   Trash2,
   Star,
   StarOff,
@@ -34,7 +33,7 @@ interface CVManagerProps {
   defaultCvId?: string;
 }
 
-export function CVManager({ initialResumes, userId, defaultCvId }: CVManagerProps) {
+export function CVManager({ initialResumes, userId }: CVManagerProps) {
   const router = useRouter();
   const [resumes, setResumes] = useState<Resume[]>(initialResumes);
   const [uploading, setUploading] = useState(false);
@@ -68,7 +67,7 @@ export function CVManager({ initialResumes, userId, defaultCvId }: CVManagerProp
       // Upload to storage
       const fileName = `${userId}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
       
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('resumes')
         .upload(fileName, file);
 

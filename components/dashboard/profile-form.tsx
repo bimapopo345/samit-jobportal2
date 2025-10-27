@@ -19,7 +19,11 @@ import {
 } from "lucide-react";
 
 interface ProfileFormProps {
-  profile: any;
+  profile: {
+    id: string;
+    full_name: string;
+    [key: string]: unknown;
+  };
   userEmail?: string | null;
 }
 

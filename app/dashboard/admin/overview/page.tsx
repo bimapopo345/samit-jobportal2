@@ -7,7 +7,6 @@ import {
   Briefcase,
   GraduationCap,
   FileText,
-  TrendingUp,
   CheckCircle,
   Clock,
   XCircle,

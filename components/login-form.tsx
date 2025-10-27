@@ -6,9 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -127,7 +124,7 @@ export function LoginForm({
             
             <div className="mt-6 text-center">
               <p className="text-slate-600 text-sm">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link
                   href="/auth/sign-up"
                   className="text-[#2B3E7C] hover:text-[#1e2a5a] font-semibold transition-colors"

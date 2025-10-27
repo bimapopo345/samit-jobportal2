@@ -48,7 +48,7 @@ export default async function ApplyPage({
               </h2>
             </div>
             <p className="text-yellow-700">
-              Hanya pengguna dengan role "Pencari Kerja" yang dapat melamar pekerjaan.
+              Hanya pengguna dengan role &quot;Pencari Kerja&quot; yang dapat melamar pekerjaan.
             </p>
           </div>
         </div>

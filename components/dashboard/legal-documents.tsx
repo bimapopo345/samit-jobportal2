@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  FileText,
   Upload,
   Check,
   X,
@@ -23,7 +22,12 @@ import {
 
 interface LegalDocumentsProps {
   organizationId: string;
-  currentDocuments: any;
+  currentDocuments: {
+    id: string;
+    document_type: string;
+    title: string;
+    file_url: string;
+  }[];
   verificationStatus: string;
 }
 
@@ -103,7 +107,7 @@ export function LegalDocuments({ organizationId, currentDocuments, verificationS
       // Upload to storage
       const fileName = `${organizationId}/${docType}_${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
       
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('legal-documents')
         .upload(fileName, file);
 

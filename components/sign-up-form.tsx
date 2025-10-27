@@ -6,9 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -113,7 +110,7 @@ export function SignUpForm({
                     <RadioGroupItem value="user" id="user" className="border-[#ff6154] text-[#ff6154]" />
                     <Label htmlFor="user" className="font-normal cursor-pointer text-slate-700 flex-1">
                       <span className="font-medium">Find a job</span>
-                      <span className="block text-sm text-slate-500">I'm looking for employment opportunities</span>
+                      <span className="block text-sm text-slate-500">I&apos;m looking for employment opportunities</span>
                     </Label>
                   </div>
                   <div className="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">

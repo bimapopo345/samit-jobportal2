@@ -14,7 +14,6 @@ import {
   DollarSign,
   CheckCircle,
   XCircle,
-  AlertCircle,
   ExternalLink,
 } from "lucide-react";
 
@@ -106,7 +105,7 @@ export default async function MyClassesPage() {
   const isClassActive = (startDate?: string, endDate?: string) => {
     if (!startDate) return true;
     const now = new Date();
-    const start = new Date(startDate);
+    const _start = new Date(startDate);
     const end = endDate ? new Date(endDate) : null;
     
     if (end && now > end) return false; // Class ended

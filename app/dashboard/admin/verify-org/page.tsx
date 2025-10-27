@@ -219,7 +219,7 @@ export default async function VerifyOrgPage() {
                 <div>
                   <h4 className="font-medium text-sm mb-2">Legal Documents</h4>
                   <div className="space-y-2">
-                    {org.organization_legal_docs.map((doc: any) => (
+                    {org.organization_legal_docs.map((doc: { id: string; title: string; file_url: string }) => (
                       <div key={doc.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                         <div className="flex items-center gap-2">
                           <FileText className="h-4 w-4 text-gray-400" />

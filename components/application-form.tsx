@@ -25,8 +25,19 @@ import {
 import { Input } from "./ui/input";
 
 interface ApplicationFormProps {
-  job: any;
-  resumes: any[];
+  job: {
+    id: string;
+    title: string;
+    organizations?: {
+      display_name: string;
+    };
+  };
+  resumes: {
+    id: string;
+    title: string;
+    file_url: string;
+    is_default: boolean;
+  }[];
   userId: string;
 }
 
@@ -81,7 +92,7 @@ export function ApplicationForm({ job, resumes, userId }: ApplicationFormProps) 
         // Upload to storage
         const fileName = `${userId}/${Date.now()}_${formData.cvFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
         
-        const { data: uploadData, error: uploadError } = await supabase.storage
+        const { error: uploadError } = await supabase.storage
           .from('resumes')
           .upload(fileName, formData.cvFile);
 
@@ -93,7 +104,7 @@ export function ApplicationForm({ job, resumes, userId }: ApplicationFormProps) 
           .getPublicUrl(fileName);
 
         // Save to database
-        const { data: resumeData, error: dbError } = await supabase
+        const { error: dbError } = await supabase
           .from('resumes')
           .insert({
             user_id: userId,

@@ -9,20 +9,18 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { 
   Building2,
-  Globe,
-  Mail,
-  Phone,
-  MapPin,
-  Calendar,
-  Users,
-  Briefcase,
   Loader2,
   Check,
   X
 } from "lucide-react";
 
 interface OrganizationFormProps {
-  organization: any;
+  organization: {
+    id: string;
+    display_name: string;
+    description?: string;
+    [key: string]: unknown;
+  };
 }
 
 export function OrganizationForm({ organization }: OrganizationFormProps) {

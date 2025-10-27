@@ -16,12 +16,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { 
-  Briefcase,
-  MapPin,
-  DollarSign,
-  Calendar,
-  Globe,
-  Building2,
   Loader2,
   Check,
   X,
@@ -31,7 +25,12 @@ import {
 
 interface JobFormProps {
   organizationId: string;
-  job?: any; // For editing existing job
+  job?: {
+    id: string;
+    title: string;
+    description: string;
+    [key: string]: unknown;
+  }; // For editing existing job
 }
 
 export function JobForm({ organizationId, job }: JobFormProps) {
