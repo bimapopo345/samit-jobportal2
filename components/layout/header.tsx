@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LogOut, Briefcase, User, Menu, X, Home, Building2, GraduationCap, Sparkles, UserPlus, LogIn, LayoutDashboard } from "lucide-react";
+import { LogOut, Briefcase, Menu, X, Building2, GraduationCap, UserPlus, LogIn, LayoutDashboard } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
