@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   MapPin,
-  Building2,
   Clock,
   Banknote,
   Heart,
