@@ -25,15 +25,16 @@ import {
 export default async function ClassesPage({
   searchParams,
 }: {
-  searchParams: { 
+  searchParams: Promise<{ 
     type?: string;
     level?: string;
     search?: string;
     page?: string;
-  }
+  }>
 }) {
   const supabase = await createClient();
-  const page = parseInt(searchParams.page || "1");
+  const resolvedSearchParams = await searchParams;
+  const page = parseInt(resolvedSearchParams.page || "1");
   const itemsPerPage = 12;
   const offset = (page - 1) * itemsPerPage;
 
@@ -46,14 +47,14 @@ export default async function ClassesPage({
     .range(offset, offset + itemsPerPage - 1);
 
   // Apply filters
-  if (searchParams.type && searchParams.type !== 'all') {
-    query = query.eq('class_type', searchParams.type);
+  if (resolvedSearchParams.type && resolvedSearchParams.type !== 'all') {
+    query = query.eq('class_type', resolvedSearchParams.type);
   }
-  if (searchParams.level && searchParams.level !== 'all') {
-    query = query.eq('jlpt_level', searchParams.level);
+  if (resolvedSearchParams.level && resolvedSearchParams.level !== 'all') {
+    query = query.eq('jlpt_level', resolvedSearchParams.level);
   }
-  if (searchParams.search) {
-    query = query.or(`title.ilike.%${searchParams.search}%,description.ilike.%${searchParams.search}%`);
+  if (resolvedSearchParams.search) {
+    query = query.or(`title.ilike.%${resolvedSearchParams.search}%,description.ilike.%${resolvedSearchParams.search}%`);
   }
 
   const { data: classes, count } = await query;
@@ -124,12 +125,12 @@ export default async function ClassesPage({
                   type="text"
                   name="search"
                   placeholder="Cari kelas bahasa Jepang..."
-                  defaultValue={searchParams.search}
+                  defaultValue={resolvedSearchParams.search}
                   className="h-12 rounded-full border border-transparent bg-slate-50 pl-12 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60"
                 />
               </div>
               
-              <Select name="type" defaultValue={searchParams.type || "all"}>
+              <Select name="type" defaultValue={resolvedSearchParams.type || "all"}>
                 <SelectTrigger className="w-full sm:w-40 h-12 rounded-full border border-transparent bg-slate-50 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60">
                   <SelectValue placeholder="Tipe Kelas" />
                 </SelectTrigger>
@@ -141,8 +142,8 @@ export default async function ClassesPage({
                 </SelectContent>
               </Select>
 
-              {searchParams.type === 'jlpt' && (
-                <Select name="level" defaultValue={searchParams.level || "all"}>
+              {resolvedSearchParams.type === 'jlpt' && (
+                <Select name="level" defaultValue={resolvedSearchParams.level || "all"}>
                   <SelectTrigger className="w-full sm:w-32 h-12 rounded-full border border-transparent bg-slate-50 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60">
                     <SelectValue placeholder="Level" />
                   </SelectTrigger>
@@ -164,7 +165,7 @@ export default async function ClassesPage({
                 Cari
               </Button>
               
-              {(searchParams.type || searchParams.level || searchParams.search) && (
+              {(resolvedSearchParams.type || resolvedSearchParams.level || resolvedSearchParams.search) && (
                 <Button type="button" variant="outline" asChild className="h-12 rounded-full border-slate-200 text-slate-600 hover:bg-slate-50">
                   <Link href="/classes">
                     Reset
@@ -306,11 +307,11 @@ export default async function ClassesPage({
                       className="border-slate-200 text-slate-600 hover:bg-slate-50"
                     >
                       <Link href={`/classes?page=${page - 1}${
-                        searchParams.type ? `&type=${searchParams.type}` : ''
+                        resolvedSearchParams.type ? `&type=${resolvedSearchParams.type}` : ''
                       }${
-                        searchParams.level ? `&level=${searchParams.level}` : ''
+                        resolvedSearchParams.level ? `&level=${resolvedSearchParams.level}` : ''
                       }${
-                        searchParams.search ? `&search=${searchParams.search}` : ''
+                        resolvedSearchParams.search ? `&search=${resolvedSearchParams.search}` : ''
                       }`}>
                         ← Previous
                       </Link>
@@ -342,11 +343,11 @@ export default async function ClassesPage({
                           }
                         >
                           <Link href={`/classes?page=${pageNum}${
-                            searchParams.type ? `&type=${searchParams.type}` : ''
+                            resolvedSearchParams.type ? `&type=${resolvedSearchParams.type}` : ''
                           }${
-                            searchParams.level ? `&level=${searchParams.level}` : ''
+                            resolvedSearchParams.level ? `&level=${resolvedSearchParams.level}` : ''
                           }${
-                            searchParams.search ? `&search=${searchParams.search}` : ''
+                            resolvedSearchParams.search ? `&search=${resolvedSearchParams.search}` : ''
                           }`}>
                             {pageNum}
                           </Link>
@@ -362,11 +363,11 @@ export default async function ClassesPage({
                       className="border-slate-200 text-slate-600 hover:bg-slate-50"
                     >
                       <Link href={`/classes?page=${page + 1}${
-                        searchParams.type ? `&type=${searchParams.type}` : ''
+                        resolvedSearchParams.type ? `&type=${resolvedSearchParams.type}` : ''
                       }${
-                        searchParams.level ? `&level=${searchParams.level}` : ''
+                        resolvedSearchParams.level ? `&level=${resolvedSearchParams.level}` : ''
                       }${
-                        searchParams.search ? `&search=${searchParams.search}` : ''
+                        resolvedSearchParams.search ? `&search=${resolvedSearchParams.search}` : ''
                       }`}>
                         Next →
                       </Link>
@@ -380,7 +381,7 @@ export default async function ClassesPage({
               <GraduationCap className="mx-auto h-16 w-16 text-slate-400 mb-6" />
               <h3 className="text-xl font-semibold text-slate-900 mb-2">Tidak ada kelas yang ditemukan</h3>
               <p className="text-slate-600 mb-6">Coba gunakan filter yang berbeda atau ubah kata kunci pencarian</p>
-              {(searchParams.search || searchParams.type || searchParams.level) && (
+              {(resolvedSearchParams.search || resolvedSearchParams.type || resolvedSearchParams.level) && (
                 <Button asChild variant="outline" className="border-slate-200 text-slate-600 hover:bg-slate-50">
                   <Link href="/classes">Lihat Semua Kelas</Link>
                 </Button>

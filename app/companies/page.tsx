@@ -17,10 +17,11 @@ import {
 export default async function CompaniesPage({
   searchParams,
 }: {
-  searchParams: { search?: string; page?: string }
+  searchParams: Promise<{ search?: string; page?: string }>
 }) {
   const supabase = await createClient();
-  const page = parseInt(searchParams.page || "1");
+  const resolvedSearchParams = await searchParams;
+  const page = parseInt(resolvedSearchParams.page || "1");
   const itemsPerPage = 12;
   const offset = (page - 1) * itemsPerPage;
 
@@ -36,8 +37,8 @@ export default async function CompaniesPage({
     .range(offset, offset + itemsPerPage - 1);
 
   // Apply search filter
-  if (searchParams.search) {
-    query = query.or(`display_name.ilike.%${searchParams.search}%,description.ilike.%${searchParams.search}%`);
+  if (resolvedSearchParams.search) {
+    query = query.or(`display_name.ilike.%${resolvedSearchParams.search}%,description.ilike.%${resolvedSearchParams.search}%`);
   }
 
   const { data: organizations, count } = await query;
@@ -99,7 +100,7 @@ export default async function CompaniesPage({
                   type="text"
                   name="search"
                   placeholder="Cari nama perusahaan atau industri..."
-                  defaultValue={searchParams.search}
+                  defaultValue={resolvedSearchParams.search}
                   className="h-12 rounded-full border border-transparent bg-slate-50 pl-12 text-sm font-medium text-slate-700 transition focus:border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#ff6154]/60"
                 />
               </div>
@@ -210,7 +211,7 @@ export default async function CompaniesPage({
                       className="border-slate-200 text-slate-600 hover:bg-slate-50"
                     >
                       <Link href={`/companies?page=${page - 1}${
-                        searchParams.search ? `&search=${searchParams.search}` : ''
+                        resolvedSearchParams.search ? `&search=${resolvedSearchParams.search}` : ''
                       }`}>
                         ← Previous
                       </Link>
@@ -242,7 +243,7 @@ export default async function CompaniesPage({
                           }
                         >
                           <Link href={`/companies?page=${pageNum}${
-                            searchParams.search ? `&search=${searchParams.search}` : ''
+                            resolvedSearchParams.search ? `&search=${resolvedSearchParams.search}` : ''
                           }`}>
                             {pageNum}
                           </Link>
@@ -258,7 +259,7 @@ export default async function CompaniesPage({
                       className="border-slate-200 text-slate-600 hover:bg-slate-50"
                     >
                       <Link href={`/companies?page=${page + 1}${
-                        searchParams.search ? `&search=${searchParams.search}` : ''
+                        resolvedSearchParams.search ? `&search=${resolvedSearchParams.search}` : ''
                       }`}>
                         Next →
                       </Link>
@@ -272,7 +273,7 @@ export default async function CompaniesPage({
               <Building2 className="mx-auto h-16 w-16 text-slate-400 mb-6" />
               <h3 className="text-xl font-semibold text-slate-900 mb-2">Tidak ada perusahaan yang ditemukan</h3>
               <p className="text-slate-600 mb-6">Coba gunakan kata kunci pencarian yang berbeda</p>
-              {searchParams.search && (
+              {resolvedSearchParams.search && (
                 <Button 
                   asChild 
                   variant="outline"

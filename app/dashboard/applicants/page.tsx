@@ -10,9 +10,10 @@ import Link from "next/link";
 export default async function ApplicantsPage({
   searchParams,
 }: {
-  searchParams: { job?: string }
+  searchParams: Promise<{ job?: string }>
 }) {
   const supabase = await createClient();
+  const resolvedSearchParams = await searchParams;
   
   const {
     data: { user },
@@ -73,14 +74,14 @@ export default async function ApplicantsPage({
     .order("applied_at", { ascending: false });
 
   // Filter by job if specified
-  if (searchParams.job) {
-    query = query.eq("job_id", searchParams.job);
+  if (resolvedSearchParams.job) {
+    query = query.eq("job_id", resolvedSearchParams.job);
   }
 
   const { data: applications } = await query;
 
-  const selectedJob = searchParams.job 
-    ? jobs?.find(j => j.id === searchParams.job)
+  const selectedJob = resolvedSearchParams.job 
+    ? jobs?.find(j => j.id === resolvedSearchParams.job)
     : null;
 
   const getStatusBadge = (status: string) => {
@@ -180,7 +181,7 @@ export default async function ApplicantsPage({
       {/* Filter - COLORFUL */}
       <div className="mb-6 flex gap-4 items-center">
         <div className="flex-1">
-          <ApplicantsFilter jobs={jobs} currentJobId={searchParams.job} />
+          <ApplicantsFilter jobs={jobs} currentJobId={resolvedSearchParams.job} />
         </div>
         {selectedJob && (
           <div className="px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl border-2 border-purple-200">
@@ -306,7 +307,7 @@ export default async function ApplicantsPage({
           </div>
           <h3 className="text-2xl font-black text-gray-900 mb-3">Belum Ada Pelamar</h3>
           <p className="text-gray-700 font-semibold max-w-md mx-auto">
-            {searchParams.job 
+            {resolvedSearchParams.job 
               ? "Belum ada pelamar untuk lowongan ini. Tunggu kandidat terbaik melamar! 🎯"
               : "Belum ada pelamar untuk semua lowongan Anda. Pastikan lowongan Anda menarik! 🚀"
             }

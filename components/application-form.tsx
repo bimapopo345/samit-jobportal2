@@ -28,6 +28,7 @@ interface ApplicationFormProps {
   job: {
     id: string;
     title: string;
+    applications_count?: number;
     organizations?: {
       display_name: string;
     };
@@ -37,6 +38,7 @@ interface ApplicationFormProps {
     title: string;
     file_url: string;
     is_default: boolean;
+    uploaded_at: string;
   }[];
   userId: string;
 }

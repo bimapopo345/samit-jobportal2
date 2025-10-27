@@ -16,8 +16,9 @@ import {
 export default async function ApplyPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
+  const { slug } = await params;
   const supabase = await createClient();
   
   const {
@@ -25,7 +26,7 @@ export default async function ApplyPage({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect(`/auth/login?redirectTo=/apply/${params.slug}`);
+    redirect(`/auth/login?redirectTo=/apply/${slug}`);
   }
 
   // Get user profile
@@ -60,7 +61,7 @@ export default async function ApplyPage({
   const { data: job } = await supabase
     .from('jobs')
     .select('*, organizations!inner(*)')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .eq('is_active', true)
     .single();
 

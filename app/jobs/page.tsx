@@ -40,13 +40,14 @@ type JobsPageSearchParams = {
 export default async function JobsPage({
   searchParams,
 }: {
-  searchParams: JobsPageSearchParams;
+  searchParams: Promise<JobsPageSearchParams>;
 }) {
   const supabase = await createClient();
-  const currentPage = Math.max(1, parseInt(searchParams.page ?? "1", 10));
+  const resolvedSearchParams = await searchParams;
+  const currentPage = Math.max(1, parseInt(resolvedSearchParams.page ?? "1", 10));
   const itemsPerPage = 12;
   const offset = (currentPage - 1) * itemsPerPage;
-  const sortParam = searchParams.sort === "oldest" ? "oldest" : "newest";
+  const sortParam = resolvedSearchParams.sort === "oldest" ? "oldest" : "newest";
 
   let query = supabase
     .from("jobs")
@@ -54,25 +55,25 @@ export default async function JobsPage({
     .eq("is_active", true)
     .eq("organizations.verification_status", "verified");
 
-  if (searchParams.category) {
-    query = query.eq("category", searchParams.category);
+  if (resolvedSearchParams.category) {
+    query = query.eq("category", resolvedSearchParams.category);
   }
 
-  if (searchParams.jlpt) {
-    query = query.eq("jlpt_required", searchParams.jlpt);
+  if (resolvedSearchParams.jlpt) {
+    query = query.eq("jlpt_required", resolvedSearchParams.jlpt);
   }
 
-  if (searchParams.employment) {
-    query = query.eq("employment_type", searchParams.employment);
+  if (resolvedSearchParams.employment) {
+    query = query.eq("employment_type", resolvedSearchParams.employment);
   }
 
-  if (searchParams.location) {
-    query = query.ilike("location_city", `%${searchParams.location}%`);
+  if (resolvedSearchParams.location) {
+    query = query.ilike("location_city", `%${resolvedSearchParams.location}%`);
   }
 
-  if (searchParams.search) {
+  if (resolvedSearchParams.search) {
     query = query.or(
-      `title.ilike.%${searchParams.search}%,description.ilike.%${searchParams.search}%`
+      `title.ilike.%${resolvedSearchParams.search}%,description.ilike.%${resolvedSearchParams.search}%`
     );
   }
 
@@ -84,13 +85,13 @@ export default async function JobsPage({
   const totalJobsText = new Intl.NumberFormat("id-ID").format(count ?? 0);
 
   const baseParams = new URLSearchParams();
-  if (searchParams.search) baseParams.set("search", searchParams.search);
-  if (searchParams.location) baseParams.set("location", searchParams.location);
-  if (searchParams.category) baseParams.set("category", searchParams.category);
-  if (searchParams.jlpt) baseParams.set("jlpt", searchParams.jlpt);
-  if (searchParams.employment)
-    baseParams.set("employment", searchParams.employment);
-  if (searchParams.sort) baseParams.set("sort", searchParams.sort);
+  if (resolvedSearchParams.search) baseParams.set("search", resolvedSearchParams.search);
+  if (resolvedSearchParams.location) baseParams.set("location", resolvedSearchParams.location);
+  if (resolvedSearchParams.category) baseParams.set("category", resolvedSearchParams.category);
+  if (resolvedSearchParams.jlpt) baseParams.set("jlpt", resolvedSearchParams.jlpt);
+  if (resolvedSearchParams.employment)
+    baseParams.set("employment", resolvedSearchParams.employment);
+  if (resolvedSearchParams.sort) baseParams.set("sort", resolvedSearchParams.sort);
 
   const createQueryString = (
     overrides: Record<string, string | number | null | undefined>
@@ -147,9 +148,9 @@ export default async function JobsPage({
 
               <div className="mx-auto w-full max-w-4xl">
                 <JobSearchBar
-                  initialSearch={searchParams.search}
-                  initialLocation={searchParams.location}
-                  initialCategory={searchParams.category}
+                  initialSearch={resolvedSearchParams.search}
+                  initialLocation={resolvedSearchParams.location}
+                  initialCategory={resolvedSearchParams.category}
                 />
               </div>
             </div>

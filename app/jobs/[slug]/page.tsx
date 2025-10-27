@@ -20,14 +20,15 @@ import {
 export default async function JobDetailPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
+  const { slug } = await params;
   const supabase = await createClient();
   
   const { data: job } = await supabase
     .from('jobs')
     .select('*, organizations!inner(*)')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .eq('is_active', true)
     .eq('organizations.verification_status', 'verified')
     .single();
