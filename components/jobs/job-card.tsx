@@ -13,7 +13,19 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 interface JobCardProps {
-  job: any; // TODO: Add proper type from database
+  job: {
+    id: string;
+    title: string;
+    slug: string;
+    location_city?: string;
+    employment_type: string;
+    location_type: string;
+    organizations?: {
+      display_name: string;
+      logo_url?: string;
+    };
+    [key: string]: unknown;
+  };
 }
 
 const CATEGORY_THEMES: Record<
