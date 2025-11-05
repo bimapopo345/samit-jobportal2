@@ -49,11 +49,14 @@ export default async function JobsPage({
   const offset = (currentPage - 1) * itemsPerPage;
   const sortParam = resolvedSearchParams.sort === "oldest" ? "oldest" : "newest";
 
+  // Get jobs with flexible organization filter to support admin jobs
   let query = supabase
     .from("jobs")
     .select("*, organizations!inner(*)", { count: "exact" })
-    .eq("is_active", true)
-    .eq("organizations.verification_status", "verified");
+    .eq("is_active", true);
+
+  // Filter for verified organizations (includes admin organization)
+  query = query.in("organizations.verification_status", ["verified"]);
 
   if (resolvedSearchParams.category) {
     query = query.eq("category", resolvedSearchParams.category);

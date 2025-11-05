@@ -23,19 +23,58 @@ export default async function NewJobPage() {
     redirect("/dashboard");
   }
 
-  // Get organization
-  const { data: organization } = await supabase
-    .from("organizations")
-    .select("*")
-    .eq("owner_id", user.id)
-    .single();
-
-  if (!organization) {
-    redirect("/dashboard/org");
+  // Get organization (or create default for admin)
+  let organization;
+  
+  if (profile?.role === 'admin') {
+    // Admin can use default SAMIT organization or create their own
+    const { data: adminOrg } = await supabase
+      .from("organizations")
+      .select("*")
+      .eq("slug", "samit-admin")
+      .single();
+    
+    if (!adminOrg) {
+      // Create default admin organization
+      const { data: newAdminOrg, error: createError } = await supabase
+        .from("organizations")
+        .insert({
+          owner_id: user.id,
+          slug: "samit-admin",
+          display_name: "SAMIT Official",
+          description: "Official SAMIT organization for admin job postings",
+          email: user.email || "admin@samit.dev",
+          verification_status: "verified",
+          verified_at: new Date().toISOString()
+        })
+        .select()
+        .single();
+      
+      if (createError) {
+        console.error("Error creating admin organization:", createError);
+        organization = null;
+      } else {
+        organization = newAdminOrg;
+      }
+    } else {
+      organization = adminOrg;
+    }
+  } else {
+    // For lembaga, get their organization
+    const { data: userOrg } = await supabase
+      .from("organizations")
+      .select("*")
+      .eq("owner_id", user.id)
+      .single();
+    
+    if (!userOrg) {
+      redirect("/dashboard/org");
+    }
+    organization = userOrg;
   }
 
-  // Check if verified
-  if (organization.verification_status !== 'verified' && profile?.role !== 'admin') {
+  // Check if verified (skip for admin)
+  if (organization?.verification_status !== 'verified' && profile?.role !== 'admin') {
     return (
       <div className="max-w-4xl mx-auto">
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
@@ -61,7 +100,14 @@ export default async function NewJobPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow p-6">
-        <JobForm organizationId={organization.id} />
+        {organization ? (
+          <JobForm organizationId={organization.id} />
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-red-600">Error: Organization not found or could not be created.</p>
+            <p className="text-gray-600 mt-2">Please try refreshing the page or contact support.</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -279,7 +279,7 @@ export function JobForm({ organizationId, job }: JobFormProps) {
                 <SelectValue placeholder="Pilih level JLPT" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Tidak ada</SelectItem>
+                <SelectItem value="none">Tidak ada</SelectItem>
                 <SelectItem value="N5">N5</SelectItem>
                 <SelectItem value="N4">N4</SelectItem>
                 <SelectItem value="N3">N3</SelectItem>

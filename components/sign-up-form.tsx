@@ -57,18 +57,51 @@ export function SignUpForm({
       
       if (signUpError) throw signUpError;
       
-      // Create profile
+      // Create profile - dengan error handling yang lebih baik
       if (authData.user) {
+        console.log('Creating profile for user:', authData.user.id);
+        
         const { error: profileError } = await supabase
           .from('profiles')
-          .insert({
+          .upsert({
             id: authData.user.id,
             full_name: fullName,
             phone: phone,
             role: role,
+          }, {
+            onConflict: 'id'
           });
           
-        if (profileError) throw profileError;
+        if (profileError) {
+          console.error('Profile creation error:', profileError);
+          
+          // Handle common errors
+          if (profileError.code === '23505' || profileError.message.includes('duplicate')) {
+            console.log('Profile already exists, updating instead...');
+            // Try to update existing profile
+            const { error: updateError } = await supabase
+              .from('profiles')
+              .update({
+                full_name: fullName,
+                phone: phone,
+                role: role,
+              })
+              .eq('id', authData.user.id);
+            
+            if (updateError) {
+              console.error('Update error:', updateError);
+            } else {
+              console.log('Profile updated successfully');
+            }
+          } else if (profileError.code === '42501' || profileError.message.includes('permission')) {
+            console.log('RLS blocking profile creation, continuing anyway...');
+          } else {
+            console.error('Unknown profile error:', profileError);
+            // Don't throw error, just continue
+          }
+        } else {
+          console.log('Profile created successfully');
+        }
       }
       
       router.push("/auth/sign-up-success");
