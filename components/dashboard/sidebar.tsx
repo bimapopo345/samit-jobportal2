@@ -25,6 +25,8 @@ interface DashboardSidebarProps {
 
 export function DashboardSidebar({ role }: DashboardSidebarProps) {
   const pathname = usePathname();
+  // FIX: Tambahkan fallback 'user' jika role undefined/null untuk mencegah crash charAt
+  const safeRole = role || "user"; 
 
   const userMenuItems = [
     {
@@ -110,16 +112,16 @@ export function DashboardSidebar({ role }: DashboardSidebarProps) {
     },
   ];
 
-  // Select menu items based on role
+  // Select menu items based on role using safeRole
   let menuItems = userMenuItems;
-  if (role === "lembaga") {
+  if (safeRole === "lembaga") {
     menuItems = lembagaMenuItems;
-  } else if (role === "admin") {
+  } else if (safeRole === "admin") {
     menuItems = adminMenuItems;
   }
 
   const getRoleLabel = () => {
-    switch (role) {
+    switch (safeRole) {
       case "user":
         return "Dashboard Pencari Kerja";
       case "lembaga":
@@ -132,7 +134,7 @@ export function DashboardSidebar({ role }: DashboardSidebarProps) {
   };
 
   const getRoleBadgeColor = () => {
-    switch (role) {
+    switch (safeRole) {
       case "admin":
         return "bg-gradient-to-r from-[#ff6154] to-[#ff7a45] text-white shadow-sm";
       case "lembaga":
@@ -148,10 +150,11 @@ export function DashboardSidebar({ role }: DashboardSidebarProps) {
         <div className="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
           <h2 className="text-xl font-semibold text-slate-900 mb-2">{getRoleLabel()}</h2>
           <div className={cn("inline-flex items-center px-3 py-1 rounded-full text-sm font-medium", getRoleBadgeColor())}>
-            {role === "admin" && <Shield className="h-4 w-4 mr-1" />}
-            {role === "lembaga" && <Building2 className="h-4 w-4 mr-1" />}
-            {role === "user" && <User className="h-4 w-4 mr-1" />}
-            {role.charAt(0).toUpperCase() + role.slice(1)}
+            {safeRole === "admin" && <Shield className="h-4 w-4 mr-1" />}
+            {safeRole === "lembaga" && <Building2 className="h-4 w-4 mr-1" />}
+            {safeRole === "user" && <User className="h-4 w-4 mr-1" />}
+            {/* FIX: Menggunakan safeRole untuk menghindari crash pada charAt */}
+            {safeRole.charAt(0).toUpperCase() + safeRole.slice(1)}
           </div>
         </div>
 
