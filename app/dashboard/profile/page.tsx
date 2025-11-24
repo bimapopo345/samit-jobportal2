@@ -19,9 +19,18 @@ export default async function ProfilePage() {
     .eq("id", user.id)
     .single();
 
-  if (profile?.role !== "user") {
-    redirect("/dashboard");
+  // FIX: Logika redirect yang menyebabkan loop
+  // Jika role adalah admin atau lembaga, arahkan ke halaman mereka masing-masing
+  if (profile?.role === "admin") {
+    redirect("/dashboard/admin/overview");
+  } 
+  
+  if (profile?.role === "lembaga") {
+    redirect("/dashboard/org");
   }
+
+  // Jika role adalah 'user' ATAU null/undefined, biarkan mereka di halaman ini (Profile)
+  // Jangan redirect ke /dashboard lagi
 
   return (
     <div className="max-w-4xl">
